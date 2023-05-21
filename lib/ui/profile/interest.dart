@@ -22,9 +22,11 @@ class _InterestState extends State<Interest> {
         color: blackPearlColor,
       ),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 'Interest',

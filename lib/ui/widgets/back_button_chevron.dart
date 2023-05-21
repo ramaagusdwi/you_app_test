@@ -17,7 +17,7 @@ class BackButtonChevron extends StatelessWidget {
       onTap: onBackPressed ?? () => Navigator.pop(context),
       child: Icon(
         Icons.chevron_left,
-        size: 40,
+        size: 28,
         color: backButtonColor ?? blackColor,
       ),
     );

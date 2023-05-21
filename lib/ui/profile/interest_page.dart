@@ -37,11 +37,13 @@ class InterestPage extends StatelessWidget {
             ),
           ),
           child: Container(
-            margin: const EdgeInsets.symmetric(horizontal: 18.0),
+            margin: EdgeInsets.symmetric(horizontal: 18.w),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                SizedBox(height: 49.w),
                 Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     back(),
@@ -49,19 +51,28 @@ class InterestPage extends StatelessWidget {
                   ],
                 ),
                 SizedBox(height: 73.w),
-                GradientText('Tell everyone about yourself',
-                    style: TextStyle(
-                      fontSize: 14.0,
-                      fontWeight: bold,
-                    ),
-                    colors: goldensColor),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 15.w),
+                  child: GradientText('Tell everyone about yourself',
+                      style: TextStyle(
+                        fontSize: 14.0,
+                        fontWeight: bold,
+                      ),
+                      colors: goldensColor),
+                ),
                 SizedBox(height: 12.w),
-                Text(
-                  'What interest you?',
-                  style: whiteTextStyle.copyWith(fontSize: 20, fontWeight: bold),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 15.w),
+                  child: Text(
+                    'What interest you?',
+                    style: whiteTextStyle.copyWith(fontSize: 20, fontWeight: bold),
+                  ),
                 ),
                 SizedBox(height: 35.w),
-                interestInput(interestController)
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 4.w),
+                  child: interestInput(interestController),
+                )
               ],
             ),
           ),
@@ -104,8 +115,9 @@ class InterestPage extends StatelessWidget {
     return InkWell(
       onTap: () {},
       child: Container(
-        margin: const EdgeInsets.only(top: 49, bottom: 60),
+        // margin: const EdgeInsets.only(top: 49, bottom: 60),
         child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             BackButtonChevron(
               onBackPressed: () {},
