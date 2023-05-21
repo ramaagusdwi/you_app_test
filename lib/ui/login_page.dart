@@ -56,7 +56,7 @@ class _LoginPageState extends State<LoginPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(transform: Matrix4.translationValues(-10.0, 0.0, 0.0), child: back()),
+                  back(),
                   header(),
                   emailInput(),
                   passwordInput(),
@@ -190,7 +190,7 @@ class _LoginPageState extends State<LoginPage> {
                 fontSize: 13.0,
                 decoration: TextDecoration.underline,
               ),
-              colors: gradientColor,
+              colors: goldensColor,
             ),
           ),
         ],

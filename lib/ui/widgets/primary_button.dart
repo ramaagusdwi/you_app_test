@@ -23,8 +23,8 @@ class PrimaryButton extends StatelessWidget {
       decoration: BoxDecoration(
         gradient: const LinearGradient(
           colors: [
-            bgButtonColor,
-            bgButtonColor2,
+            blueDowny,
+            celestialBlue,
           ],
         ),
         borderRadius: BorderRadius.circular(9.0),

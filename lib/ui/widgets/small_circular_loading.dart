@@ -11,7 +11,7 @@ class SmallCircularLoading extends StatelessWidget {
       child: TextButton(
         onPressed: () {},
         style: TextButton.styleFrom(
-          backgroundColor: bgButtonColor,
+          backgroundColor: blueDowny,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
           ),

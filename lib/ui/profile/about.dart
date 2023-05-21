@@ -212,7 +212,7 @@ class _EditAboutContentState extends State<EditAboutContent> {
               child: GradientText(
                 'Save & Update',
                 style: TextStyle(fontSize: 12.0, fontWeight: medium),
-                colors: gradientColor,
+                colors: goldensColor,
               ),
             )
           ],
@@ -455,10 +455,10 @@ class _EditAboutContentState extends State<EditAboutContent> {
               background: backgroundColor,
               primary: backgroundColor3, // <-- SEE HERE
               onPrimary: white, // <-- SEE HERE
-              onSurface: bgButtonColor2, // <-- SEE HERE
+              onSurface: celestialBlue, // <-- SEE HERE
             ),
             textButtonTheme: TextButtonThemeData(
-              style: TextButton.styleFrom(primary: bgButtonColor // button text color
+              style: TextButton.styleFrom(primary: blueDowny // button text color
                   ),
             ),
           ),

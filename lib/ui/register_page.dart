@@ -219,7 +219,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 fontSize: 13.0,
                 decoration: TextDecoration.underline,
               ),
-              colors: gradientColor,
+              colors: goldensColor,
             ),
           ),
         ],

@@ -22,8 +22,8 @@ const Color backgroundColor = Color(0xFF1F4247);
 const Color backgroundColor2 = Color(0xFF0D1D23);
 const Color backgroundColor3 = Color(0xFF09141A);
 
-const Color bgButtonColor = Color(0xFF62CDCB);
-const Color bgButtonColor2 = Color(0xFF4599DB);
+const Color blueDowny = Color(0xFF62CDCB);
+const Color celestialBlue = Color(0xFF4599DB);
 
 const Color blackColor = Color(0xff272C2F);
 const Color blackPearlColor = Color(0xff0E191F);
@@ -33,8 +33,9 @@ const Color grey = Color(0xFF162329);
 const Color dark = Color(0xFF212831);
 const Color bgTextField = Color(0xFF253D42);
 const Color whiteOpacity6 = Color(0x33FFFFFF);
+const Color bgTextField2 = Color(0x1AD9D9D9);
 
-const List<Color> gradientColor = [
+const List<Color> goldensColor = [
   Color(0xff94783E),
   Color(0xffF3EDA6),
   Color(0xFFF8FAE5),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_you_app/route/routes.dart';
 import 'package:flutter_you_app/theme.dart';
 
 class Interest extends StatefulWidget {
@@ -32,10 +33,13 @@ class _InterestState extends State<Interest> {
                   fontWeight: bold,
                 ),
               ),
-              Container(
-                height: 17,
-                width: 17,
-                child: Image.asset('assets/edit.png'),
+              InkWell(
+                onTap: () => Navigator.pushNamed(context, Routes.interest),
+                child: Container(
+                  height: 17,
+                  width: 17,
+                  child: Image.asset('assets/edit.png'),
+                ),
               ),
             ],
           ),
