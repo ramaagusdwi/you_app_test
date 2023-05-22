@@ -21,3 +21,22 @@ String getZodiacSign(DateTime birthdate) {
   else
     return signNames[birthdate.month];
 }
+
+String calculateChineseZodiac(int year) {
+  List<String> zodiacs = [
+    'Monkey',
+    'Rooster',
+    'Dog',
+    'Pig',
+    'Rat',
+    'Ox',
+    'Tiger',
+    'Rabbit',
+    'Dragon',
+    'Snake',
+    'Horse',
+    'Sheep'
+  ];
+
+  return zodiacs[(year - 1900) % 12];
+}

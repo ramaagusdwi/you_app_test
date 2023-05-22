@@ -296,6 +296,25 @@ class _EditAboutContentState extends State<EditAboutContent> {
     );
   }
 
+  BaseInputLabel horoscopeInput() {
+    return BaseInputLabel(
+      labelLeftText: 'Horoscope:',
+      labelLeftStyle: whiteOpacity40TextStyle.copyWith(fontSize: 13, fontWeight: bold),
+      enabled: false,
+      textAlign: TextAlign.left,
+      labelText: labelHoroscope,
+      labelStyle: whiteOpacity40TextStyle,
+      hintText: labelHoroscope,
+      hintStyle: whiteOpacity40TextStyle,
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return 'Please select birthday first then auto detect your horoscope';
+        }
+        return null;
+      },
+    );
+  }
+  
   BaseInputLabel zodiacInput() {
     return BaseInputLabel(
       labelLeftText: 'Zodiac:',
@@ -308,54 +327,54 @@ class _EditAboutContentState extends State<EditAboutContent> {
       hintStyle: whiteOpacity40TextStyle,
       validator: (value) {
         if (value == null || value.isEmpty) {
-          return 'Please select your zodiac';
+          return 'Please select birthday first then auto detect your zodiac';
         }
         return null;
       },
     );
   }
 
-  Row horoscopeInput() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Flexible(
-          flex: 1,
-          child: Text(
-            'Horoscope:',
-            style: whiteOpacity40TextStyle.copyWith(fontSize: 13, fontWeight: bold),
-          ),
-        ),
-        fetchHoroscopeInProgress
-            ? const Center(
-                child: CircularProgressIndicator(),
-              )
-            : Flexible(
-                flex: 3,
-                child: ConstrainedBox(
-                  constraints: const BoxConstraints.tightFor(width: 400, height: 200),
-                  child: CustomTextField(
-                      maxLines: 13,
-                      collapsedInputDecoration: labelHoroscope.length > 2,
-                      enabled: true,
-                      textAlign: labelHoroscope.length > 2 ? TextAlign.center : TextAlign.start,
-                      useBorderSide: true,
-                      textEditingController: null,
-                      labelText: labelHoroscope,
-                      labelStyle: whiteOpacity40TextStyle.copyWith(overflow: TextOverflow.visible),
-                      hintText: labelHoroscope,
-                      hintStyle: whiteOpacity40TextStyle.copyWith(overflow: TextOverflow.visible),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please select birthday too see your horoscope';
-                        }
-                        return null;
-                      }),
-                ),
-              ),
-      ],
-    );
-  }
+  // Row horoscopeInput() {
+  //   return Row(
+  //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  //     children: [
+  //       Flexible(
+  //         flex: 1,
+  //         child: Text(
+  //           'Horoscope:',
+  //           style: whiteOpacity40TextStyle.copyWith(fontSize: 13, fontWeight: bold),
+  //         ),
+  //       ),
+  //       fetchHoroscopeInProgress
+  //           ? const Center(
+  //               child: CircularProgressIndicator(),
+  //             )
+  //           : Flexible(
+  //               flex: 3,
+  //               child: ConstrainedBox(
+  //                 constraints: const BoxConstraints.tightFor(width: 400, height: 200),
+  //                 child: CustomTextField(
+  //                     maxLines: 13,
+  //                     collapsedInputDecoration: labelHoroscope.length > 2,
+  //                     enabled: true,
+  //                     textAlign: labelHoroscope.length > 2 ? TextAlign.center : TextAlign.start,
+  //                     useBorderSide: true,
+  //                     textEditingController: null,
+  //                     labelText: labelHoroscope,
+  //                     labelStyle: whiteOpacity40TextStyle.copyWith(overflow: TextOverflow.visible),
+  //                     hintText: labelHoroscope,
+  //                     hintStyle: whiteOpacity40TextStyle.copyWith(overflow: TextOverflow.visible),
+  //                     validator: (value) {
+  //                       if (value == null || value.isEmpty) {
+  //                         return 'Please select birthday too see your horoscope';
+  //                       }
+  //                       return null;
+  //                     }),
+  //               ),
+  //             ),
+  //     ],
+  //   );
+  // }
 
   Row genderInput() {
     return Row(
@@ -473,25 +492,32 @@ class _EditAboutContentState extends State<EditAboutContent> {
     final int year = selected.year;
 
     log('onpicker: $day $month $year');
-    setState(() {
-      fetchHoroscopeInProgress = true;
-    });
-    final result =
-        await HTTPHoroscopeService().dailyPredictionPost(signZodiac: getZodiacSign(selected));
-
-    result.fold((error) {
-      Utils.createSnackBar(error, type: Severity.Error);
-      setState(() {
-        fetchHoroscopeInProgress = false;
-      });
-    }, (data) {
       var formattedDate = DateFormat('dd MM yyyy').format(selected);
-      setState(() {
+    setState(() {
         labelBirthday = formattedDate;
         labelZodiac = getZodiacSign(selected);
-        labelHoroscope = data;
+      labelHoroscope = calculateChineseZodiac(year);
         fetchHoroscopeInProgress = false;
       });
-    });
+    // setState(() {
+    //   fetchHoroscopeInProgress = true;
+    // });
+    // final result =
+    //     await HTTPHoroscopeService().dailyPredictionPost(signZodiac: getZodiacSign(selected));
+
+    // result.fold((error) {
+    //   Utils.createSnackBar(error, type: Severity.Error);
+    //   setState(() {
+    //     fetchHoroscopeInProgress = false;
+    //   });
+    // }, (data) {
+    //   var formattedDate = DateFormat('dd MM yyyy').format(selected);
+    //   setState(() {
+    //     labelBirthday = formattedDate;
+    //     labelZodiac = getZodiacSign(selected);
+    //     labelHoroscope = data;
+    //     fetchHoroscopeInProgress = false;
+    //   });
+    // });
   }
 }
