@@ -25,6 +25,9 @@ const Color backgroundColor3 = Color(0xFF09141A);
 const Color blueDowny = Color(0xFF62CDCB);
 const Color celestialBlue = Color(0xFF4599DB);
 
+const Color blueDowny50 = Color(0x8062CDCB);
+const Color celestialBlue50 = Color(0x804599DB);
+
 const Color blackColor = Color(0xff272C2F);
 const Color blackPearlColor = Color(0xff0E191F);
 

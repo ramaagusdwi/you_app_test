@@ -33,13 +33,13 @@ class PrimaryButton extends StatelessWidget {
               boxShadow: const [
                 BoxShadow(
                   offset: Offset(-10, 20),
-                  color: blueDowny,
+                  color: blueDowny50,
                   blurRadius: 15,
                   spreadRadius: -10,
                 ),
                 BoxShadow(
                   offset: Offset(15, 20),
-                  color: celestialBlue,
+                  color: celestialBlue50,
                   blurRadius: 15,
                   spreadRadius: -10,
                 ),
