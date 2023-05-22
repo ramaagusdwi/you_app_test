@@ -58,6 +58,7 @@ class CustomTextField extends StatelessWidget {
     final double iconToInputFieldGap = 10.w;
 
     return TextFormField(
+      obscureText: obsureText,
       inputFormatters: inputTypeFormatters,
       keyboardType: textInputType,
       style: TextStyle(color: Colors.white, fontSize: 13.sp, fontWeight: medium),

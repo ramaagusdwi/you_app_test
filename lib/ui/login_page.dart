@@ -130,14 +130,24 @@ class _LoginPageState extends State<LoginPage> {
         labelText: 'Enter  password',
         labelStyle: whiteOpacity40TextStyle,
         hintText: 'Enter password',
-        hintStyle: whiteOpacity40TextStyle,
-        suffixIcon: IconButton(
-          icon: Icon(obscureText ? Icons.visibility_off : Icons.visibility, color: white),
-          onPressed: () {
-            setState(() {
-              obscureText = !obscureText;
-            });
+        hintStyle: whiteOpacity40TextStyle,   
+        suffixIcon: ShaderMask(
+          shaderCallback: (Rect bounds) {
+            return const LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: goldensColor,
+            ).createShader(bounds);
           },
+          child: IconButton(
+            icon: Icon(obscureText ? Icons.visibility_off_outlined : Icons.visibility_outlined,
+                color: white),
+            onPressed: () {
+              setState(() {
+                obscureText = !obscureText;
+              });
+            },
+          ),
         ),
         obsureText: obscureText,
         validator: (value) {

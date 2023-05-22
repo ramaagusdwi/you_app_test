@@ -58,7 +58,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 children: [
                   Container(transform: Matrix4.translationValues(-10.0, 0.0, 0.0), child: back()),
                   header(),
-                  usernameInput(),
+                  emailInput(),
                   usernameInput(),
                   passwordInput(),
                   confirmPasswordInput(),
@@ -104,6 +104,26 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 
+
+  Widget emailInput() {
+    return Container(
+      margin: const EdgeInsets.only(bottom: normalMargin),
+      child: CustomTextField(
+          filledColor: const Color(0xFF243C41).withOpacity(1.0),
+          textEditingController: emailController,
+          labelText: 'Enter email',
+          labelStyle: whiteOpacity40TextStyle,
+          hintText: 'Enter email',
+          hintStyle: whiteOpacity40TextStyle,
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return 'Please enter your username/email';
+            }
+            return null;
+          }),
+    );
+  }
+  
   Widget usernameInput() {
     return Container(
       margin: const EdgeInsets.only(bottom: normalMargin),
@@ -133,13 +153,23 @@ class _RegisterPageState extends State<RegisterPage> {
         labelStyle: whiteOpacity40TextStyle,
         hintText: 'Create password',
         hintStyle: whiteOpacity40TextStyle,
-        suffixIcon: IconButton(
-          icon: Icon(obscureText ? Icons.visibility_off : Icons.visibility, color: white),
-          onPressed: () {
-            setState(() {
-              obscureText = !obscureText;
-            });
+        suffixIcon: ShaderMask(
+          shaderCallback: (Rect bounds) {
+            return const LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: goldensColor,
+            ).createShader(bounds);
           },
+          child: IconButton(
+            icon: Icon(obscureText ? Icons.visibility_off_outlined : Icons.visibility_outlined,
+                color: white),
+            onPressed: () {
+              setState(() {
+                obscureText = !obscureText;
+              });
+            },
+          ),
         ),
         obsureText: obscureText,
         validator: (value) {
@@ -162,13 +192,22 @@ class _RegisterPageState extends State<RegisterPage> {
         labelStyle: whiteOpacity40TextStyle,
         hintText: 'Confirm password',
         hintStyle: whiteOpacity40TextStyle,
-        suffixIcon: IconButton(
-          icon: Icon(obscureText ? Icons.visibility_off : Icons.visibility, color: white),
-          onPressed: () {
-            setState(() {
-              obscureText = !obscureText;
-            });
+        suffixIcon: ShaderMask(
+          shaderCallback: (Rect bounds) {
+            return const LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: goldensColor,
+            ).createShader(bounds);
           },
+          child: IconButton(
+            icon: Icon(obscureText ? Icons.visibility_off_outlined : Icons.visibility_outlined, color: white),
+            onPressed: () {
+              setState(() {
+                obscureText = !obscureText;
+              });
+            },
+          ),
         ),
         obsureText: obscureText,
         validator: (value) {
