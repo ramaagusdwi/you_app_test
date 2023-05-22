@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_you_app/constant/image_constant.dart';
 import 'package:flutter_you_app/theme.dart';
 import 'package:flutter_you_app/ui/profile/about.dart';
 import 'package:flutter_you_app/ui/profile/interest.dart';
@@ -166,13 +167,39 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 
+  Map<String, String> zodiac = {
+    'aries': ImageConstant.aries,
+    'taurus': ImageConstant.taurus,
+    'gemini': ImageConstant.gemini,
+    'cancer': ImageConstant.cancer,
+    'leo': ImageConstant.leo,
+    'virgo': ImageConstant.virgo,
+    'libra': ImageConstant.libra,
+    'scorpio': ImageConstant.scorpio,
+    'sagitarius': ImageConstant.sagitarius,
+    'capricorn': ImageConstant.capricorn,
+    'aquarius': ImageConstant.aquarius,
+    'pisces': ImageConstant.pisces,
+    'rat': ImageConstant.rat,
+    'ox': ImageConstant.ox,
+    'tiger': ImageConstant.tiger,
+    'rabbit': ImageConstant.rabbit,
+    'dragon': ImageConstant.dragon,
+    'snake': ImageConstant.snake,
+    'horse': ImageConstant.horse,
+    'goat': ImageConstant.goat,
+    'monkey': ImageConstant.monkey,
+    'rooster': ImageConstant.rooster,
+    'dog': ImageConstant.dog,
+    'pig': ImageConstant.pig,
+  };
+
   Widget _buildChip(String label, Color color) {
+    String labelLowerCase = label.toLowerCase();
+    String assetZodiac = zodiac[labelLowerCase]!;
     return Chip(
       labelPadding: const EdgeInsets.all(2.0),
-      avatar: CircleAvatar(
-        backgroundColor: Colors.white70,
-        child: Text(label[0].toUpperCase()),
-      ),
+      avatar: Image.asset(assetZodiac),
       label: Padding(
         padding: const EdgeInsets.only(left: 10),
         child: Text(
@@ -193,8 +220,8 @@ class _ProfilePageState extends State<ProfilePage> {
       spacing: 15.0,
       runSpacing: 6.0,
       children: <Widget>[
-        _buildChip('Virgo', Color(0xFF222421)),
-        _buildChip('Pig', const Color(0xFF222421)),
+        _buildChip('sagitarius', Color(0xFF222421)),
+        _buildChip('rooster', const Color(0xFF222421)),
       ],
     );
   }

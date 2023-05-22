@@ -142,13 +142,13 @@ class AboutContentWithData extends StatelessWidget {
         const SizedBox(height: 33),
         const ItemLabelAbout(labelLeftText: 'Birthday:', labelRightText: '28 / 08 / 1995 (Age)'),
         const SizedBox(height: 15),
-        const ItemLabelAbout(labelLeftText: 'Horoscope:', labelRightText: 'Virgo)'),
+        const ItemLabelAbout(labelLeftText: 'Horoscope:', labelRightText: 'Virgo'),
         const SizedBox(height: 15),
-        const ItemLabelAbout(labelLeftText: 'Zodiac:', labelRightText: 'Pig)'),
+        const ItemLabelAbout(labelLeftText: 'Zodiac:', labelRightText: 'Pig'),
         const SizedBox(height: 15),
-        const ItemLabelAbout(labelLeftText: 'Height:', labelRightText: '175 cm)'),
+        const ItemLabelAbout(labelLeftText: 'Height:', labelRightText: '175 cm'),
         const SizedBox(height: 15),
-        const ItemLabelAbout(labelLeftText: 'Weight:', labelRightText: '69 kg)'),
+        const ItemLabelAbout(labelLeftText: 'Weight:', labelRightText: '69 kg'),
       ],
     );
   }
