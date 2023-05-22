@@ -154,7 +154,8 @@ class _LoginPageState extends State<LoginPage> {
     return Container(
       margin: const EdgeInsets.only(bottom: 50),
       child: Opacity(
-        opacity: 0.4, //opacity 0.4 when username & password field not filled
+        // opacity: 0.4, //opacity 0.4 when username & password field not filled
+        opacity: 1.0, //opacity 0.4 when username & password field not filled
         child: PrimaryButton(
           title: 'Login',
           height: 51.0,

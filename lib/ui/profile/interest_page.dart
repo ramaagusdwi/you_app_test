@@ -46,7 +46,7 @@ class InterestPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    back(),
+                    back(context),
                     save(),
                   ],
                 ),
@@ -111,16 +111,19 @@ class InterestPage extends StatelessWidget {
     );
   }
 
-  Widget back() {
-    return InkWell(
-      onTap: () {},
-      child: Container(
-        // margin: const EdgeInsets.only(top: 49, bottom: 60),
-        child: Row(
+  Widget back(BuildContext context) {
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTap: () {
+        Navigator.pop(context);
+      },
+      child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             BackButtonChevron(
-              onBackPressed: () {},
+            onBackPressed: () {
+              Navigator.pop(context);
+            },
               backButtonColor: white,
             ),
             Text(
@@ -128,8 +131,7 @@ class InterestPage extends StatelessWidget {
               style: whiteTextStyle.copyWith(fontSize: 14, fontWeight: bold),
             ),
           ],
-        ),
-      ),
+      ),      
     );
   }
 }
