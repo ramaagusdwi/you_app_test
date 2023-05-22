@@ -50,7 +50,19 @@ class _AddImageState extends State<AddImage> {
                   padding: const EdgeInsets.all(10),
                   decoration: const BoxDecoration(
                       color: dark, borderRadius: BorderRadius.all(Radius.circular(17))),
-                  child: const Icon(Icons.add, color: white),
+                  child: ShaderMask(
+                    shaderCallback: (Rect bounds) {
+                      return const LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: goldensColor,
+                      ).createShader(bounds);
+                    },
+                    child: const Icon(
+                      Icons.add,
+                      color: Colors.white,
+                    ),
+                  )
                 ),
           const SizedBox(width: 15),
           Text(
