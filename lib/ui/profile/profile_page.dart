@@ -34,10 +34,9 @@ class _ProfilePageState extends State<ProfilePage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
+                const SizedBox(height: 40),
                 header(),
-                const SizedBox(
-                  height: 28,
-                ),
+                const SizedBox(height: 28),
                 //before add photo
                 isUpdateData
                     ? Flexible(
@@ -124,27 +123,25 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 
-  Container header() {
-    return Container(
-      margin: const EdgeInsets.only(top: 40, bottom: 0, left: 8, right: 8),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          back(),
-          Text(
-            '@johndoe',
-            style: whiteTextStyle.copyWith(fontSize: 14, fontWeight: semiBold),
-          ),
-          Row(
-            children: [
-              Image.asset('assets/diamond.png', height: 8, width: 8),
-              Image.asset('assets/diamond.png', height: 8, width: 8),
-              Image.asset('assets/diamond.png', height: 8, width: 8),
-            ],
-          )
-        ],
-      ),
+  Widget header() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        back(),
+        Text(
+          '@johndoe',
+          textAlign: TextAlign.center,
+          style: whiteTextStyle.copyWith(fontSize: 14, fontWeight: semiBold),
+        ),
+        Row(
+          children: [
+            Image.asset('assets/diamond.png', height: 8, width: 8),
+            Image.asset('assets/diamond.png', height: 8, width: 8),
+            Image.asset('assets/diamond.png', height: 8, width: 8),
+          ],
+        )
+      ],
     );
   }
 
