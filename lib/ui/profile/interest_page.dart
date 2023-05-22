@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -6,8 +8,16 @@ import 'package:flutter_you_app/ui/widgets/back_button_chevron.dart';
 import 'package:flutter_you_app/ui/widgets/custom_text_field.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 
-class InterestPage extends StatelessWidget {
+class InterestPage extends StatefulWidget {
   const InterestPage({super.key});
+
+  @override
+  State<InterestPage> createState() => _InterestPageState();
+}
+
+class _InterestPageState extends State<InterestPage> {
+  List<String> interests = [];
+  int maxLines = 1; // Adjust this value as needed
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +82,52 @@ class InterestPage extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 4.w),
                   child: interestInput(interestController),
-                )
+                ),
+                SizedBox(height: 20.w),
+                if (interests.isNotEmpty) ...[
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 4.w),
+                    child: Text('Select Interest', style: whiteOpacity40TextStyle),
+                  ),
+                  SizedBox(height: 8.w),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 4.w),
+                    child: Wrap(
+                        direction: Axis.horizontal,
+                        spacing: 4,
+                        runSpacing: 8,
+                        children: interests
+                            .map((item) => Container(
+                                padding: const EdgeInsets.all(8),
+                                decoration: const BoxDecoration(
+                                  color: whiteOpacity10,
+                                  borderRadius: BorderRadius.all(Radius.circular(4)),
+                                ),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Text(item,
+                                        style: whiteTextStyle.copyWith(
+                                            fontSize: 12, fontWeight: semiBold)),
+                                    SizedBox(width: 10.w),
+                                    InkWell(
+                                      onTap: () {
+                                        interests.removeWhere((element) => element == item);
+                                        setState(() {});
+                                      },
+                                      child: Icon(
+                                        Icons.close,
+                                        size: 14.w,
+                                        color: white,
+                                      ),
+                                    )
+                                  ],
+                                )))
+                            .toList()),
+                  ),
+                ], 
+               
+                
               ],
             ),
           ),
@@ -85,16 +140,40 @@ class InterestPage extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(bottom: normalMargin),
       child: CustomTextField(
-          filledColor: bgTextField2,
-          textEditingController: controller,
-          labelText: '',
-          labelStyle: whiteOpacity40TextStyle,
-          hintText: '',
-          hintStyle: whiteOpacity40TextStyle,
-          validator: (value) {
-            return null;
-          }),
+        filledColor: bgTextField2,
+        textEditingController: controller,
+        labelText: 'e.g Music',
+        labelStyle: whiteOpacity40TextStyle,
+        hintText: 'e.g Music',
+        hintStyle: whiteOpacity40TextStyle,
+        maxLines: maxLines,
+        validator: (value) {
+          return null;
+        },
+        onSubmitted: (value) {
+          log('submitted');
+
+          adjustTextFieldHeight(value!);
+        },
+      ),
     );
+  }
+
+  void adjustTextFieldHeight(String value) {
+    interests.add(value);
+    // final lines = value.split('\n').length;
+
+    // // Set maximum number of lines
+    // final maxLines = 5; // Adjust this value as needed
+    final length = interests.length;
+    setState(() {
+      maxLines = length > 2 ? maxLines + 1 : maxLines;
+    });
+  }
+
+  String setTextFieldLabel() {
+    if (interests.isEmpty) return 'e.g Music';
+    return '';
   }
 
   Widget save() {
@@ -118,20 +197,20 @@ class InterestPage extends StatelessWidget {
         Navigator.pop(context);
       },
       child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            BackButtonChevron(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          BackButtonChevron(
             onBackPressed: () {
               Navigator.pop(context);
             },
-              backButtonColor: white,
-            ),
-            Text(
-              'Back',
-              style: whiteTextStyle.copyWith(fontSize: 14, fontWeight: bold),
-            ),
-          ],
-      ),      
+            backButtonColor: white,
+          ),
+          Text(
+            'Back',
+            style: whiteTextStyle.copyWith(fontSize: 14, fontWeight: bold),
+          ),
+        ],
+      ),
     );
   }
 }

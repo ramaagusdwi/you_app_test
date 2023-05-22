@@ -21,6 +21,7 @@ class CustomTextField extends StatelessWidget {
   final TextAlign textAlign;
   final TextInputType? textInputType;
   final List<TextInputFormatter>? inputTypeFormatters;
+  final Function(String?)? onSubmitted;
 
   CustomTextField({
     required this.textEditingController,
@@ -40,6 +41,7 @@ class CustomTextField extends StatelessWidget {
     this.textAlign = TextAlign.left,
     this.textInputType,
     this.inputTypeFormatters,
+    this.onSubmitted,
   });
 
   @override
@@ -131,6 +133,7 @@ class CustomTextField extends StatelessWidget {
               prefixIcon: prefixIcon,
             ),
       validator: validator,
+      onFieldSubmitted: onSubmitted,
     );
   }
 }
