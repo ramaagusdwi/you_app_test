@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_you_app/bloc/login_bloc.dart';
-import 'package:flutter_you_app/bloc/login_event.dart';
+import 'package:flutter_you_app/features/login/presentation/bloc/login_bloc.dart';
+import 'package:flutter_you_app/features/login/presentation/bloc/login_event.dart';
 import 'package:flutter_you_app/route/routes.dart';
 import 'package:flutter_you_app/theme.dart';
 import 'package:flutter_you_app/ui/widgets/back_button_chevron.dart';

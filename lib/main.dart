@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_you_app/features/login/presentation/ui/login_page.dart';
 import 'package:flutter_you_app/route/router.dart';
-import 'package:flutter_you_app/ui/login/login_page.dart';
 import 'package:flutter_you_app/route/router.dart';
 
 void main() {

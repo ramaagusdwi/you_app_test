@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_you_app/bloc/login_event.dart';
+import 'package:flutter_you_app/features/login/presentation/bloc/login_event.dart';
 import 'package:flutter_you_app/models/email.dart';
 import 'package:flutter_you_app/models/password.dart';
 import 'package:formz/formz.dart';
