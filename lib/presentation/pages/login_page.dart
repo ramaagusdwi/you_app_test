@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_you_app/features/login/presentation/bloc/login_bloc.dart';
-import 'package:flutter_you_app/features/login/presentation/ui/login_form.dart';
-import 'package:flutter_you_app/route/routes.dart';
-import 'package:flutter_you_app/theme.dart';
-import 'package:flutter_you_app/ui/widgets/back_button_chevron.dart';
-import 'package:flutter_you_app/ui/widgets/custom_text_field.dart';
-import 'package:flutter_you_app/ui/widgets/primary_button.dart';
-import 'package:flutter_you_app/ui/widgets/small_circular_loading.dart';
+import 'package:flutter_you_app/core/route/routes.dart';
+import 'package:flutter_you_app/presentation/bloc/login_bloc.dart';
+import 'package:flutter_you_app/presentation/widgets/back_button_chevron.dart';
+import 'package:flutter_you_app/presentation/widgets/custom_text_field.dart';
+import 'package:flutter_you_app/presentation/widgets/login_form.dart';
+import 'package:flutter_you_app/presentation/widgets/primary_button.dart';
+import 'package:flutter_you_app/core/theme.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 
 class LoginPage extends StatefulWidget {

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_you_app/constant/image_constant.dart';
-import 'package:flutter_you_app/theme.dart';
-import 'package:flutter_you_app/ui/profile/about.dart';
-import 'package:flutter_you_app/ui/profile/interest.dart';
-import 'package:flutter_you_app/ui/widgets/back_button_chevron.dart';
+import 'package:flutter_you_app/core/constant/image_constant.dart';
+import 'package:flutter_you_app/presentation/widgets/back_button_chevron.dart';
+import 'package:flutter_you_app/core/theme.dart';
+import 'package:flutter_you_app/presentation/widgets/profile/about.dart';
+import 'package:flutter_you_app/presentation/widgets/profile/interest.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});

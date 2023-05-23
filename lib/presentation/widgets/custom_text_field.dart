@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_you_app/theme.dart';
+import 'package:flutter_you_app/core/theme.dart';
 
 class CustomTextField extends StatelessWidget {
   final TextEditingController? textEditingController;

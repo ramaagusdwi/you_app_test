@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_you_app/constant/url_constant.dart';
+import 'package:flutter_you_app/core/constant/url_constant.dart';
 
 class Api {
   final dio = createDio();

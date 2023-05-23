@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_you_app/features/login/presentation/ui/login_page.dart';
-import 'package:flutter_you_app/route/router.dart';
-import 'package:flutter_you_app/route/router.dart';
+import 'package:flutter_you_app/core/route/router.dart';
+import 'package:flutter_you_app/core/route/router.dart';
+import 'package:flutter_you_app/presentation/pages/login_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
               // primarySwatch: Colors.grey,
             ),
             onGenerateRoute: generateRoute,
-            home: const LoginPage(),
+            home:  LoginPage(),
           );
         });
   }

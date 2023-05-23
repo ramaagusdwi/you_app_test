@@ -3,8 +3,8 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_you_app/theme.dart';
-import 'package:flutter_you_app/utils/take_photo_bottomsheet.dart';
+import 'package:flutter_you_app/core/theme.dart';
+import 'package:flutter_you_app/core/utils/take_photo_bottomsheet.dart';
 
 class AddImage extends StatefulWidget {
   const AddImage({super.key});

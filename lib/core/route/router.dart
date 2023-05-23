@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_you_app/features/login/presentation/ui/login_page.dart';
-import 'package:flutter_you_app/route/routes.dart';
-import 'package:flutter_you_app/ui/profile/interest_page.dart';
-import 'package:flutter_you_app/ui/profile/profile_page.dart';
-import 'package:flutter_you_app/ui/register_page.dart';
+import 'package:flutter_you_app/core/route/routes.dart';
+import 'package:flutter_you_app/presentation/pages/login_page.dart';
+import 'package:flutter_you_app/presentation/pages/interest_page.dart';
+import 'package:flutter_you_app/presentation/pages/profile_page.dart';
+import 'package:flutter_you_app/presentation/pages/register_page.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
@@ -20,10 +20,10 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case Routes.interest:
       return MaterialPageRoute(
         builder: (_) => const InterestPage(),
-      ); 
+      );
 
     default:
       //statements;
-      return MaterialPageRoute(builder: (context) => LoginPage());
+      return MaterialPageRoute(builder: (context) => const LoginPage());
   }
 }

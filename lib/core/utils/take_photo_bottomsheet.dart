@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_you_app/theme.dart';
-import 'package:flutter_you_app/utils/utils.dart';
+import 'package:flutter_you_app/core/theme.dart';
+import 'package:flutter_you_app/core/utils/utils.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 void takePhotoBottomSheet(BuildContext context, {required Function(List<String?>?) onSave}) {

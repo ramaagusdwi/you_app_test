@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_you_app/route/routes.dart';
-import 'package:flutter_you_app/theme.dart';
-import 'package:flutter_you_app/ui/widgets/back_button_chevron.dart';
-
-import 'package:flutter_you_app/ui/widgets/custom_app_bar.dart';
-import 'package:flutter_you_app/ui/widgets/custom_text_field.dart';
-import 'package:flutter_you_app/ui/widgets/small_circular_loading.dart';
-import 'package:flutter_you_app/ui/widgets/primary_button.dart';
+import 'package:flutter_you_app/core/route/routes.dart';
+import 'package:flutter_you_app/presentation/widgets/back_button_chevron.dart';
+import 'package:flutter_you_app/presentation/widgets/custom_text_field.dart';
+import 'package:flutter_you_app/presentation/widgets/primary_button.dart';
+import 'package:flutter_you_app/presentation/widgets/small_circular_loading.dart';
+import 'package:flutter_you_app/core/theme.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -104,7 +102,6 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 
-
   Widget emailInput() {
     return Container(
       margin: const EdgeInsets.only(bottom: normalMargin),
@@ -123,7 +120,7 @@ class _RegisterPageState extends State<RegisterPage> {
           }),
     );
   }
-  
+
   Widget usernameInput() {
     return Container(
       margin: const EdgeInsets.only(bottom: normalMargin),
@@ -201,7 +198,8 @@ class _RegisterPageState extends State<RegisterPage> {
             ).createShader(bounds);
           },
           child: IconButton(
-            icon: Icon(obscureText ? Icons.visibility_off_outlined : Icons.visibility_outlined, color: white),
+            icon: Icon(obscureText ? Icons.visibility_off_outlined : Icons.visibility_outlined,
+                color: white),
             onPressed: () {
               setState(() {
                 obscureText = !obscureText;

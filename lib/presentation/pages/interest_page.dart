@@ -3,9 +3,9 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_you_app/theme.dart';
-import 'package:flutter_you_app/ui/widgets/back_button_chevron.dart';
-import 'package:flutter_you_app/ui/widgets/custom_text_field.dart';
+import 'package:flutter_you_app/presentation/widgets/back_button_chevron.dart';
+import 'package:flutter_you_app/presentation/widgets/custom_text_field.dart';
+import 'package:flutter_you_app/core/theme.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 
 class InterestPage extends StatefulWidget {

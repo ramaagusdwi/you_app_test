@@ -4,7 +4,7 @@ import 'dart:developer';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter_you_app/constant/url_constant.dart';
+import 'package:flutter_you_app/core/constant/url_constant.dart';
 import 'package:flutter_you_app/network/base_http.dart';
 
 class HTTPHoroscopeService {
