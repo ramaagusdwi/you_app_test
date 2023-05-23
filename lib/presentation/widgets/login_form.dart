@@ -278,7 +278,9 @@ class _PasswordInputState extends State<_PasswordInput> {
               return null;
             },
             onChanged: (value) => context.read<LoginBloc>().add(LoginPasswordChanged(value!)),
-            errorText: state.password.displayError != null ? 'Invalid Password' : null,
+            errorText: state.password.displayError != null
+                ? 'Minimum 8 character, only letter and number'
+                : null,
             errorStyle: whiteOpacity40TextStyle,
           ),
         );
