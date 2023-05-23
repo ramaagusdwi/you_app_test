@@ -1,18 +1,14 @@
 import 'dart:developer';
 
+import 'package:dropdown_textfield/dropdown_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_you_app/network/http_horoscope_service.dart';
+import 'package:flutter_you_app/core/theme.dart';
+import 'package:flutter_you_app/core/utils/zodiac_sign.dart';
 import 'package:flutter_you_app/presentation/widgets/about_text_field_decoration.dart';
 import 'package:flutter_you_app/presentation/widgets/base_input_label.dart';
 import 'package:flutter_you_app/presentation/widgets/item_label_about.dart';
-import 'package:flutter_you_app/core/theme.dart';
 import 'package:flutter_you_app/presentation/widgets/profile/add_image.dart';
-import 'package:dropdown_textfield/dropdown_textfield.dart';
-import 'package:flutter_you_app/core/utils/date_picker.dart';
-import 'package:flutter_you_app/core/utils/take_photo_bottomsheet.dart';
-import 'package:flutter_you_app/core/utils/utils.dart';
-import 'package:flutter_you_app/core/utils/zodiac_sign.dart';
 import 'package:intl/intl.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 
@@ -332,48 +328,6 @@ class _EditAboutContentState extends State<EditAboutContent> {
       },
     );
   }
-
-  // Row horoscopeInput() {
-  //   return Row(
-  //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //     children: [
-  //       Flexible(
-  //         flex: 1,
-  //         child: Text(
-  //           'Horoscope:',
-  //           style: whiteOpacity40TextStyle.copyWith(fontSize: 13, fontWeight: bold),
-  //         ),
-  //       ),
-  //       fetchHoroscopeInProgress
-  //           ? const Center(
-  //               child: CircularProgressIndicator(),
-  //             )
-  //           : Flexible(
-  //               flex: 3,
-  //               child: ConstrainedBox(
-  //                 constraints: const BoxConstraints.tightFor(width: 400, height: 200),
-  //                 child: CustomTextField(
-  //                     maxLines: 13,
-  //                     collapsedInputDecoration: labelHoroscope.length > 2,
-  //                     enabled: true,
-  //                     textAlign: labelHoroscope.length > 2 ? TextAlign.center : TextAlign.start,
-  //                     useBorderSide: true,
-  //                     textEditingController: null,
-  //                     labelText: labelHoroscope,
-  //                     labelStyle: whiteOpacity40TextStyle.copyWith(overflow: TextOverflow.visible),
-  //                     hintText: labelHoroscope,
-  //                     hintStyle: whiteOpacity40TextStyle.copyWith(overflow: TextOverflow.visible),
-  //                     validator: (value) {
-  //                       if (value == null || value.isEmpty) {
-  //                         return 'Please select birthday too see your horoscope';
-  //                       }
-  //                       return null;
-  //                     }),
-  //               ),
-  //             ),
-  //     ],
-  //   );
-  // }
 
   Row genderInput() {
     return Row(
