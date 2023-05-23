@@ -38,18 +38,12 @@ class LoginForm extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              back(),
-              header(),
-              // emailInput(emailController),
+              _back(),
+              _header(),
               _EmailInput(),
               _PasswordInput(),
-              _LoginButton(),
-              // signInButton(context),
-              // passwordInput(
-              //   passwordController,
-              // ),
-              // isLoading ? SmallCircularLoading() : signInButton(),
-              footer(context),
+              _LoginButton(),        
+              _footer(context),
             ],
           ),
         ),
@@ -57,7 +51,7 @@ class LoginForm extends StatelessWidget {
     );
   }
 
-  Widget back() {
+  Widget _back() {
     return InkWell(
       onTap: () {},
       child: Container(
@@ -78,7 +72,7 @@ class LoginForm extends StatelessWidget {
     );
   }
 
-  Widget header() {
+  Widget _header() {
     return Container(
       margin: const EdgeInsets.only(bottom: largeMargin, left: 16.0),
       child: Text(
@@ -107,44 +101,7 @@ class LoginForm extends StatelessWidget {
     );
   }
 
-  // Widget passwordInput(TextEditingController passwordController) {
-  //   return Container(
-  //     margin: const EdgeInsets.only(bottom: largeMargin),
-  //     child: CustomTextField(
-  //       filledColor: const Color(0xFF253D42),
-  //       textEditingController: passwordController,
-  //       labelText: 'Enter  password',
-  //       labelStyle: whiteOpacity40TextStyle,
-  //       hintText: 'Enter password',
-  //       hintStyle: whiteOpacity40TextStyle,
-  //       suffixIcon: ShaderMask(
-  //         shaderCallback: (Rect bounds) {
-  //           return const LinearGradient(
-  //             begin: Alignment.topCenter,
-  //             end: Alignment.bottomCenter,
-  //             colors: goldensColor,
-  //           ).createShader(bounds);
-  //         },
-  //         child: IconButton(
-  //           icon: Icon(obscureText ? Icons.visibility_off_outlined : Icons.visibility_outlined,
-  //               color: white),
-  //           onPressed: () {
-  //             setState(() {
-  //               obscureText = !obscureText;
-  //             });
-  //           },
-  //         ),
-  //       ),
-  //       obsureText: obscureText,
-  //       validator: (value) {
-  //         if (value == null || value.isEmpty) {
-  //           return 'Please enter your password';
-  //         }
-  //         return null;
-  //       },
-  //     ),
-  //   );
-  // }
+  
 
   Widget signInButton(BuildContext context) {
     return Container(
@@ -164,7 +121,7 @@ class LoginForm extends StatelessWidget {
     );
   }
 
-  Widget footer(BuildContext context) {
+  Widget _footer(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(bottom: 30),
       child: Row(
