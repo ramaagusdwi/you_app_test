@@ -54,23 +54,7 @@ class _LoginPageState extends State<LoginPage> {
               create: (_) => sl<LoginBloc>(),
               child: const LoginForm(),
             )
-            // Form(
-            //   key: _form,
-            //   child: Container(
-            //     margin: const EdgeInsets.symmetric(horizontal: 18.0),
-            //     child: Column(
-            //       crossAxisAlignment: CrossAxisAlignment.start,
-            //       children: [
-            //         back(),
-            //         header(),
-            //         emailInput(),
-            //         passwordInput(),
-            //         isLoading ? SmallCircularLoading() : signInButton(),
-            //         footer(),
-            //       ],
-            //     ),
-            //   ),
-            // ),
+            
             ),
       ),
     );
