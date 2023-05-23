@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_you_app/core/route/router.dart';
-import 'package:flutter_you_app/core/route/router.dart';
+
 import 'package:flutter_you_app/presentation/pages/login_page.dart';
 
-void main() {
+import 'injection_container.dart';
+
+void main() async {
+  await ScreenUtil.ensureScreenSize();
+
+  await configureDependencies();
   runApp(const MyApp());
 }
 
@@ -14,15 +19,6 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    // return MaterialApp(
-    //   title: 'You App',
-    //   theme: ThemeData(
-    //     primaryColor: Colors.black,
-    //     // primarySwatch: Colors.grey,
-    //   ),
-    //   onGenerateRoute: generateRoute,
-    //   home: const LoginPage(),
-    // );
     return ScreenUtilInit(
         designSize: const Size(375, 812),
         minTextAdapt: true,
@@ -35,7 +31,7 @@ class MyApp extends StatelessWidget {
               // primarySwatch: Colors.grey,
             ),
             onGenerateRoute: generateRoute,
-            home:  LoginPage(),
+            home: LoginPage(),
           );
         });
   }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_you_app/core/route/routes.dart';
+import 'package:flutter_you_app/injection_container.dart';
 import 'package:flutter_you_app/presentation/bloc/login_bloc.dart';
 import 'package:flutter_you_app/presentation/widgets/back_button_chevron.dart';
 import 'package:flutter_you_app/presentation/widgets/custom_text_field.dart';
@@ -50,7 +51,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
             child: BlocProvider(
-              create: (_) => LoginBloc(),
+              create: (_) => sl<LoginBloc>(),
               child: const LoginForm(),
             )
             // Form(
