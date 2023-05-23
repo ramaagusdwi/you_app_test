@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_you_app/bloc/login_bloc.dart';
 import 'package:flutter_you_app/route/routes.dart';
 import 'package:flutter_you_app/theme.dart';
+import 'package:flutter_you_app/ui/login/login_form.dart';
 import 'package:flutter_you_app/ui/widgets/back_button_chevron.dart';
-
-import 'package:flutter_you_app/ui/widgets/custom_app_bar.dart';
 import 'package:flutter_you_app/ui/widgets/custom_text_field.dart';
-import 'package:flutter_you_app/ui/widgets/small_circular_loading.dart';
 import 'package:flutter_you_app/ui/widgets/primary_button.dart';
+import 'package:flutter_you_app/ui/widgets/small_circular_loading.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 
 class LoginPage extends StatefulWidget {
@@ -37,36 +38,40 @@ class _LoginPageState extends State<LoginPage> {
       resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Container(
-          decoration: BoxDecoration(
-            gradient: RadialGradient(
-              center: const Alignment(1.30, -0.8), // near the top right
-              radius: 1.0,
-              stops: <double>[0.1, 0.8, 10.0],
-              colors: [
-                backgroundColor,
-                backgroundColor2,
-                backgroundColor3.withOpacity(0),
-              ],
-            ),
-          ),
-          child: Form(
-            key: _form,
-            child: Container(
-              margin: const EdgeInsets.symmetric(horizontal: 18.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  back(),
-                  header(),
-                  emailInput(),
-                  passwordInput(),
-                  isLoading ? SmallCircularLoading() : signInButton(),
-                  footer(),
+            decoration: BoxDecoration(
+              gradient: RadialGradient(
+                center: const Alignment(1.30, -0.8), // near the top right
+                radius: 1.0,
+                stops: <double>[0.1, 0.8, 10.0],
+                colors: [
+                  backgroundColor,
+                  backgroundColor2,
+                  backgroundColor3.withOpacity(0),
                 ],
               ),
             ),
-          ),
-        ),
+            child: BlocProvider(
+              create: (_) => LoginBloc(),
+              child: const LoginForm(),
+            )
+            // Form(
+            //   key: _form,
+            //   child: Container(
+            //     margin: const EdgeInsets.symmetric(horizontal: 18.0),
+            //     child: Column(
+            //       crossAxisAlignment: CrossAxisAlignment.start,
+            //       children: [
+            //         back(),
+            //         header(),
+            //         emailInput(),
+            //         passwordInput(),
+            //         isLoading ? SmallCircularLoading() : signInButton(),
+            //         footer(),
+            //       ],
+            //     ),
+            //   ),
+            // ),
+            ),
       ),
     );
   }
@@ -130,7 +135,7 @@ class _LoginPageState extends State<LoginPage> {
         labelText: 'Enter  password',
         labelStyle: whiteOpacity40TextStyle,
         hintText: 'Enter password',
-        hintStyle: whiteOpacity40TextStyle,   
+        hintStyle: whiteOpacity40TextStyle,
         suffixIcon: ShaderMask(
           shaderCallback: (Rect bounds) {
             return const LinearGradient(

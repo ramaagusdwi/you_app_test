@@ -9,6 +9,8 @@ class CustomTextField extends StatelessWidget {
   final TextStyle labelStyle;
   final String hintText;
   final TextStyle hintStyle;
+  final String? errorText;
+  final TextStyle? errorStyle;
   final Widget? suffixIcon;
   final Widget? prefixIcon;
   final bool obsureText;
@@ -22,6 +24,7 @@ class CustomTextField extends StatelessWidget {
   final TextInputType? textInputType;
   final List<TextInputFormatter>? inputTypeFormatters;
   final Function(String?)? onSubmitted;
+  final Function(String?)? onChanged;
 
   CustomTextField({
     required this.textEditingController,
@@ -42,6 +45,9 @@ class CustomTextField extends StatelessWidget {
     this.textInputType,
     this.inputTypeFormatters,
     this.onSubmitted,
+    this.onChanged,
+    this.errorText,
+    this.errorStyle,
   });
 
   @override
@@ -114,6 +120,8 @@ class CustomTextField extends StatelessWidget {
               labelStyle: labelStyle,
               hintText: hintText,
               hintStyle: hintStyle,
+              errorText: errorText,
+              errorStyle: errorStyle,
               suffixIcon: suffixIcon,
               // suffixIconConstraints: BoxConstraints.tight(
               //   const Size(30, 20),
@@ -134,6 +142,7 @@ class CustomTextField extends StatelessWidget {
             ),
       validator: validator,
       onFieldSubmitted: onSubmitted,
+      onChanged: onChanged,
     );
   }
 }
