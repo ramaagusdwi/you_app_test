@@ -1,13 +1,13 @@
 
 
-sealed class LoginEvent {}
+class LoginEvent {}
 
-final class LoginEmailChanged extends LoginEvent {
+class LoginEmailChanged extends LoginEvent {
   String email;
   LoginEmailChanged(this.email);
 }
 
-final class LoginPasswordChanged extends LoginEvent {
+class LoginPasswordChanged extends LoginEvent {
   String password;
   LoginPasswordChanged(this.password);
 }

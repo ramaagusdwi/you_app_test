@@ -1,6 +1,6 @@
 part of 'login_bloc.dart';
 
-final class LoginState extends Equatable {
+class LoginState extends Equatable {
   const LoginState({
     this.email = const Email.pure(),
     this.password = const Password.pure(),
