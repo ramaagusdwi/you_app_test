@@ -1,27 +1,24 @@
 import 'package:equatable/equatable.dart';
 
 class LoginEntity extends Equatable {
-  String phoneNumber;
+  String email;
   String password;
-  String? outletCode;
+ 
   LoginEntity({
-    required this.phoneNumber,
+    required this.email,
     required this.password,
-    this.outletCode,
   });
 
   Map<String, dynamic> get json => {
-        'phone_no': phoneNumber,
+        'email': email,
         'password': password,
-        if (outletCode != null) 'outlet_code': outletCode,
       };
 
   factory LoginEntity.fromMap(Map<String, dynamic> data) => LoginEntity(
-        phoneNumber: data['phone_no'],
+        email: data['email'],
         password: data['password'],
-        outletCode: data['outlet_code'],
       );
 
   @override
-  List<Object?> get props => [phoneNumber, password, outletCode];
+  List<Object?> get props => [email, password];
 }
