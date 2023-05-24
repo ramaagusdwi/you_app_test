@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_you_app/data/models/email.dart';
@@ -20,20 +21,22 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
   FutureOr<void> _onEmailChanged(LoginEmailChanged event, emit) {
     final email = Email.dirty(event.email);
+    bool isEmailAndPassValid = Formz.validate([email, state.password]);    
     emit(
       state.copyWith(
         email: email,
-        isValid: Formz.validate([email, state.password]),
+        isValid: isEmailAndPassValid
       ),
     );
   }
 
   FutureOr<void> _onPasswordChanged(LoginPasswordChanged event, emit) {
     final password = Password.dirty(event.password);
+    bool isEmailAndPassValid = Formz.validate([password, state.email]);   
     emit(
       state.copyWith(
         password: password,
-        isValid: Formz.validate([password, state.password]),
+        isValid: isEmailAndPassValid,
       ),
     );
   }

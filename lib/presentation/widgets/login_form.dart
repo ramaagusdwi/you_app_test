@@ -250,7 +250,7 @@ class _LoginButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<LoginBloc, LoginState>(
-      builder: (context, state) {
+      builder: (context, state) {      
         return state.status.isInProgress
             ? const CircularProgressIndicator()
             : Container(
