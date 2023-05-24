@@ -239,7 +239,7 @@ class _PasswordInputState extends State<_PasswordInput> {
             },
             onChanged: (value) => context.read<RegisterBloc>().add(RegisterPasswordChanged(value!)),
             errorText: state.password.displayError != null
-                ? 'Minimum 8 character, only letter and number'
+                ? 'Minimum 8 character, The password consist of letter and number'
                 : null,
             errorStyle: whiteOpacity40TextStyle,
           ),
