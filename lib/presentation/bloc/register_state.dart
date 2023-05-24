@@ -5,7 +5,7 @@ class RegisterState extends Equatable {
     this.email = const Email.pure(),
     this.password = const Password.pure(),
     this.confirmationPassword = const ConfirmationPassword.pure(),
-    this.name = const Name.pure(),
+    this.username = const Username.pure(),
     this.status = FormzSubmissionStatus.initial,
     this.isValid = false,
     this.errorMessage,
@@ -14,20 +14,20 @@ class RegisterState extends Equatable {
   final Email email;
   final Password password;
   final ConfirmationPassword confirmationPassword;
-  final Name name;
+  final Username username;
   final FormzSubmissionStatus status;
   final bool isValid;
   final String? errorMessage;
 
   @override
   List<Object?> get props =>
-      [email, name, password, confirmationPassword, status, isValid, errorMessage];
+      [email, username, password, confirmationPassword, status, isValid, errorMessage];
 
   RegisterState copyWith({
     Email? email,
     Password? password,
     ConfirmationPassword? confirmationPassword,
-    Name? name,
+    Username? name,
     FormzSubmissionStatus? status,
     bool? isValid,
     String? errorMessage,
@@ -36,7 +36,7 @@ class RegisterState extends Equatable {
       email: email ?? this.email,
       password: password ?? this.password,
       confirmationPassword: confirmationPassword ?? this.confirmationPassword,
-      name: name ?? this.name,
+      username: name ?? this.username,
       status: status ?? this.status,
       isValid: isValid ?? this.isValid,
       errorMessage: errorMessage ?? this.errorMessage,

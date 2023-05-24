@@ -26,7 +26,8 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
 
   FutureOr<void> _onEmailChanged(RegisterEmailChanged event, emit) {
     final email = Email.dirty(event.email);
-    bool allFieldValid = Formz.validate([email, state.password, state.name]);
+    bool allFieldValid =
+        Formz.validate([email, state.username, state.password, state.confirmationPassword]);
     emit(
       state.copyWith(email: email, isValid: allFieldValid),
     );
@@ -34,7 +35,8 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
 
   FutureOr<void> _onPasswordChanged(RegisterPasswordChanged event, emit) {
     final password = Password.dirty(event.password);
-    bool allFieldValid = Formz.validate([password, state.email, state.name]);
+    bool allFieldValid =
+        Formz.validate([password, state.confirmationPassword, state.email, state.username]);
     emit(
       state.copyWith(
         password: password,
@@ -48,7 +50,8 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
       event.confirmationPassword,
       state.password.value,
     ]);
-    bool allFieldValid = Formz.validate([confirmPassword, state.password, state.email, state.name]);
+    bool allFieldValid =
+        Formz.validate([confirmPassword, state.password, state.email, state.username]);
     log('errorConfirmPass: ${confirmPassword.displayError}');
     emit(
       state.copyWith(
@@ -59,8 +62,9 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
   }
 
   FutureOr<void> _onUsernameChanged(RegisterUsernameChanged event, emit) {
-    final username = Name.dirty(event.username);
-    bool allFieldValid = Formz.validate([username, state.password, state.email]);
+    final username = Username.dirty(event.username);
+    bool allFieldValid =
+        Formz.validate([username, state.password, state.confirmationPassword, state.email]);
     emit(
       state.copyWith(name: username, isValid: allFieldValid),
     );
@@ -72,7 +76,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
     var entity = RegisterParams(
       email: state.email.value,
       password: state.password.value,
-      name: state.name.value,
+      name: state.username.value,
     );
     final result = await register.execute(entity);
 

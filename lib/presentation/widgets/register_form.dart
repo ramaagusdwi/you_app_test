@@ -159,7 +159,11 @@ class _UsernameInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<RegisterBloc, RegisterState>(
-      buildWhen: (previous, current) => previous.email != current.email,
+      buildWhen: (previous, current) =>
+          previous.email != current.email ||
+          previous.password != current.password ||
+          previous.confirmationPassword != current.confirmationPassword ||
+          previous.username != current.username,
       builder: (context, state) {
         return Container(
           margin: const EdgeInsets.only(bottom: largeMargin),
@@ -171,7 +175,7 @@ class _UsernameInput extends StatelessWidget {
             hintText: 'Create Username',
             hintStyle: whiteOpacity40TextStyle,
             onChanged: (value) => context.read<RegisterBloc>().add(RegisterUsernameChanged(value!)),
-            errorText: state.email.displayError != null ? 'Invalid Email' : null,
+            errorText: state.username.displayError != null ? 'Invalid Username' : null,
             errorStyle: whiteOpacity40TextStyle,
             textInputType: TextInputType.name,
             validator: (value) {
