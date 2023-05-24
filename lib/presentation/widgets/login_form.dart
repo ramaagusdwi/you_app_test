@@ -21,7 +21,6 @@ class LoginForm extends StatelessWidget {
     return BlocListener<LoginBloc, LoginState>(
       listener: (context, state) {
         if (state.status.isFailure) {
-          FocusManager.instance.primaryFocus?.unfocus();
           debugPrint('loginFailure');
           ScaffoldMessenger.of(context)
             ..hideCurrentSnackBar()
@@ -31,7 +30,7 @@ class LoginForm extends StatelessWidget {
               ),
             );
         }
-        if (state.status.isSuccess) {          
+        if (state.status.isSuccess) {
           debugPrint('loginSuccess');
           Navigator.of(context).pushReplacementNamed(Routes.profile);
         }
@@ -218,20 +217,27 @@ class _LoginButton extends StatelessWidget {
     return BlocBuilder<LoginBloc, LoginState>(
       builder: (context, state) {
         return state.status.isInProgress
-            ? const CircularProgressIndicator()
+            ? const Center(
+                child: Padding(
+                padding: EdgeInsets.only(bottom: 16),
+                child: CircularProgressIndicator(),
+              ))
             : Container(
                 margin: const EdgeInsets.only(bottom: 50),
                 child: Opacity(
-                  // opacity: 0.4, //opacity 0.4 when username & password field not filled
                   opacity: state.isValid
                       ? 1.0
-                      : 0.4, //opacity 0.4 when username & password field is filled and valid
+                      : 0.4, //opacity 0.4 when username & password field is not valid
                   child: PrimaryButton(
                     title: 'Login',
                     height: 51.0,
                     radius: 9.0,
-                    onPressed:
-                        state.isValid ? () => context.read<LoginBloc>().add(LoginPressed()) : null,
+                    onPressed: state.isValid
+                        ? () {
+                            FocusManager.instance.primaryFocus?.unfocus();
+                            context.read<LoginBloc>().add(LoginPressed());
+                          }
+                        : null,
                   ),
                 ),
               );
