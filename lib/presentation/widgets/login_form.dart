@@ -41,7 +41,6 @@ class LoginForm extends StatelessWidget {
               state.email.value, // 'username' or passwd
             ),
           );
-              
         }
       },
       child: Form(
@@ -51,7 +50,7 @@ class LoginForm extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _back(),
+              _back(context),
               _header(),
               _EmailInput(),
               _PasswordInput(),
@@ -64,9 +63,11 @@ class LoginForm extends StatelessWidget {
     );
   }
 
-  Widget _back() {
+  Widget _back(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Navigator.pop(context);
+      },
       child: Container(
         margin: const EdgeInsets.only(top: 49, bottom: 60),
         child: Row(
@@ -110,7 +111,7 @@ class LoginForm extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              Navigator.of(context).pushReplacementNamed(Routes.register);
+              Navigator.of(context).pushNamed(Routes.register);
             },
             child: GradientText(
               'Register here',
