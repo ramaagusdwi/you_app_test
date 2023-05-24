@@ -8,9 +8,14 @@ import 'package:flutter_you_app/presentation/pages/register_page.dart';
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
     case Routes.profile:
-      return MaterialPageRoute(
-        builder: (_) => const ProfilePage(),
-      ); // Pass it
+      {
+        // Cast the arguments to the correct
+        // type: ScreenArguments.
+        final args = settings.arguments as ProfilePageArgument;
+        return MaterialPageRoute(
+          builder: (_) => ProfilePage(username: args.username),
+        ); // Pass
+      }
 
     case Routes.register:
       return MaterialPageRoute(

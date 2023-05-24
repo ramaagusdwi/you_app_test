@@ -6,6 +6,7 @@ import 'package:flutter_you_app/core/route/routes.dart';
 import 'package:flutter_you_app/core/theme.dart';
 import 'package:flutter_you_app/data/models/confirmation_password.dart';
 import 'package:flutter_you_app/presentation/bloc/register_bloc.dart';
+import 'package:flutter_you_app/presentation/pages/profile_page.dart';
 import 'package:flutter_you_app/presentation/widgets/back_button_chevron.dart';
 import 'package:flutter_you_app/presentation/widgets/custom_text_field.dart';
 import 'package:flutter_you_app/presentation/widgets/primary_button.dart';
@@ -33,7 +34,14 @@ class RegisterForm extends StatelessWidget {
         }
         if (state.status.isSuccess) {
           debugPrint('RegisterSuccess');
-          Navigator.of(context).pushReplacementNamed(Routes.profile);
+          // Navigator.of(context).pushReplacementNamed(Routes.profile);
+          Navigator.pushReplacementNamed(
+            context,
+            Routes.profile,
+            arguments: ProfilePageArgument(
+              state.email.value, // 'username' or passwd
+            ),
+          );
         }
       },
       child: Form(

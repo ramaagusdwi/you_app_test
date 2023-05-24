@@ -6,8 +6,15 @@ import 'package:flutter_you_app/core/theme.dart';
 import 'package:flutter_you_app/presentation/widgets/profile/about.dart';
 import 'package:flutter_you_app/presentation/widgets/profile/interest.dart';
 
+class ProfilePageArgument {
+  String username;
+
+  ProfilePageArgument(this.username);
+}
+
 class ProfilePage extends StatefulWidget {
-  const ProfilePage({super.key});
+  String username;
+  ProfilePage({super.key, required this.username});
 
   @override
   State<ProfilePage> createState() => _ProfilePageState();

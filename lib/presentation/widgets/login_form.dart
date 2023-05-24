@@ -4,6 +4,7 @@ import 'package:flutter_you_app/core/route/routes.dart';
 import 'package:flutter_you_app/domain/entities/login_entity.dart';
 import 'package:flutter_you_app/presentation/bloc/login_bloc.dart';
 import 'package:flutter_you_app/presentation/bloc/login_event.dart';
+import 'package:flutter_you_app/presentation/pages/profile_page.dart';
 import 'package:flutter_you_app/presentation/widgets/back_button_chevron.dart';
 import 'package:flutter_you_app/presentation/widgets/custom_text_field.dart';
 import 'package:flutter_you_app/presentation/widgets/primary_button.dart';
@@ -32,7 +33,15 @@ class LoginForm extends StatelessWidget {
         }
         if (state.status.isSuccess) {
           debugPrint('loginSuccess');
-          Navigator.of(context).pushReplacementNamed(Routes.profile);
+          // Navigator.of(context).pushReplacementNamed(Routes.profile);
+          Navigator.pushReplacementNamed(
+            context,
+            Routes.profile,
+            arguments: ProfilePageArgument(
+              state.email.value, // 'username' or passwd
+            ),
+          );
+              
         }
       },
       child: Form(
@@ -130,9 +139,9 @@ class _EmailInput extends StatelessWidget {
           child: CustomTextField(
             filledColor: const Color(0xFF243C41).withOpacity(1.0),
             textEditingController: emailController,
-            labelText: 'Enter Username/Email',
+            labelText: 'Enter Email',
             labelStyle: whiteOpacity40TextStyle,
-            hintText: 'Enter Username/Email',
+            hintText: 'Enter Email',
             hintStyle: whiteOpacity40TextStyle,
             onChanged: (value) => context.read<LoginBloc>().add(LoginEmailChanged(value!)),
             errorText: state.email.displayError != null ? 'Invalid Email' : null,
@@ -140,7 +149,7 @@ class _EmailInput extends StatelessWidget {
             textInputType: TextInputType.emailAddress,
             validator: (value) {
               if (value == null || value.isEmpty) {
-                return 'Please enter your username/email';
+                return 'Please enter your email';
               }
               return null;
             },

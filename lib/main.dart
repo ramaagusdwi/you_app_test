@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
               // primarySwatch: Colors.grey,
             ),
             onGenerateRoute: generateRoute,
-            home: LoginPage(),
+            home: const LoginPage(),
           );
         });
 
