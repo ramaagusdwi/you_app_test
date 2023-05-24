@@ -175,7 +175,8 @@ class _UsernameInput extends StatelessWidget {
             hintText: 'Create Username',
             hintStyle: whiteOpacity40TextStyle,
             onChanged: (value) => context.read<RegisterBloc>().add(RegisterUsernameChanged(value!)),
-            errorText: state.username.displayError != null ? 'Invalid Username' : null,
+            errorText:
+                state.username.displayError != null ? 'Invalid Username minimal 3 character' : null,
             errorStyle: whiteOpacity40TextStyle,
             textInputType: TextInputType.name,
             validator: (value) {
