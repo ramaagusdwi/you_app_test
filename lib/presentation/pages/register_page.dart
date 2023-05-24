@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_you_app/core/route/routes.dart';
+import 'package:flutter_you_app/injection_container.dart';
+import 'package:flutter_you_app/presentation/bloc/login_bloc.dart';
+import 'package:flutter_you_app/presentation/bloc/register_bloc.dart';
 import 'package:flutter_you_app/presentation/widgets/back_button_chevron.dart';
 import 'package:flutter_you_app/presentation/widgets/custom_text_field.dart';
 import 'package:flutter_you_app/presentation/widgets/primary_button.dart';
+import 'package:flutter_you_app/presentation/widgets/register_form.dart';
 import 'package:flutter_you_app/presentation/widgets/small_circular_loading.dart';
 import 'package:flutter_you_app/core/theme.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
@@ -39,7 +44,7 @@ class _RegisterPageState extends State<RegisterPage> {
             gradient: RadialGradient(
               center: const Alignment(1.30, -0.8), // near the top right
               radius: 1.0,
-              stops: <double>[0.1, 0.8, 10.0],
+              stops: const <double>[0.1, 0.8, 10.0],
               colors: [
                 backgroundColor,
                 backgroundColor2,
@@ -47,25 +52,10 @@ class _RegisterPageState extends State<RegisterPage> {
               ],
             ),
           ),
-          child: Form(
-            key: _form,
-            child: Container(
-              margin: const EdgeInsets.symmetric(horizontal: 18.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(transform: Matrix4.translationValues(-10.0, 0.0, 0.0), child: back()),
-                  header(),
-                  emailInput(),
-                  usernameInput(),
-                  passwordInput(),
-                  confirmPasswordInput(),
-                  isLoading ? SmallCircularLoading() : signInButton(),
-                  footer(),
-                ],
-              ),
-            ),
-          ),
+          child: BlocProvider(
+            create: (context) => sl<RegisterBloc>(),
+            child: const RegisterForm(),
+          ),         
         ),
       ),
     );

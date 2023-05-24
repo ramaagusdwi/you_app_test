@@ -5,6 +5,7 @@ import 'package:flutter_you_app/domain/usecase/login.dart';
 import 'package:flutter_you_app/domain/usecase/register.dart';
 import 'package:flutter_you_app/injection_container.dart';
 import 'package:flutter_you_app/presentation/bloc/login_bloc.dart';
+import 'package:flutter_you_app/presentation/bloc/register_bloc.dart';
 
 class InjectDependencyAuth extends IconfigureDependencies {
   @override
@@ -18,7 +19,7 @@ class InjectDependencyAuth extends IconfigureDependencies {
   @override
   injectBloc() {
     sl.registerFactory(() => LoginBloc(sl()));
-    // sl.registerFactory(() => RegisterBloc(sl(), sl()));
+    sl.registerFactory(() => RegisterBloc(sl()));
     // sl.registerFactory(() => AuthBloc(sl(), sl(), sl(), sl()));
   }
 
