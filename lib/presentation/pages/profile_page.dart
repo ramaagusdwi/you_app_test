@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_you_app/core/constant/image_constant.dart';
+import 'package:flutter_you_app/domain/usecase/login.dart';
+import 'package:flutter_you_app/presentation/pages/login_page.dart';
 import 'package:flutter_you_app/presentation/widgets/back_button_chevron.dart';
 import 'package:flutter_you_app/core/theme.dart';
 import 'package:flutter_you_app/presentation/widgets/profile/about.dart';
@@ -11,6 +13,9 @@ class ProfilePageArgument {
 
   ProfilePageArgument(this.username);
 }
+
+// This is the type used by the popup menu below.
+enum SampleItem { itemOne, itemTwo, itemThree }
 
 class ProfilePage extends StatefulWidget {
   String username;
@@ -43,7 +48,8 @@ class _ProfilePageState extends State<ProfilePage> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 const SizedBox(height: 40),
-                header(widget.username),
+                // header(widget.username),
+                _Header(username: widget.username),
                 const SizedBox(height: 28),
                 //before add photo
                 isUpdateData
@@ -131,27 +137,50 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 
-  Widget header(String username) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        back(),
-        Text(
-          username,
-          textAlign: TextAlign.center,
-          style: whiteTextStyle.copyWith(fontSize: 14, fontWeight: semiBold),
-        ),
-        Row(
-          children: [
-            Image.asset('assets/diamond.png', height: 8, width: 8),
-            Image.asset('assets/diamond.png', height: 8, width: 8),
-            Image.asset('assets/diamond.png', height: 8, width: 8),
-          ],
-        )
-      ],
-    );
-  }
+  // Widget header(String username) {
+  //   return Row(
+  //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  //     crossAxisAlignment: CrossAxisAlignment.center,
+  //     children: [
+  //       back(),
+  //       Text(
+  //         username,
+  //         textAlign: TextAlign.center,
+  //         style: whiteTextStyle.copyWith(fontSize: 14, fontWeight: semiBold),
+  //       ),
+  //       PopupMenuButton<SampleItem>(
+  //         initialValue: '',
+  //         // Callback that sets the selected popup menu item.
+  //         onSelected: (SampleItem item) {
+  //           setState(() {
+  //             selectedMenu = item;
+  //           });
+  //         },
+  //         itemBuilder: (BuildContext context) => <PopupMenuEntry<SampleItem>>[
+  //           const PopupMenuItem<SampleItem>(
+  //             value: SampleItem.itemOne,
+  //             child: Text('Item 1'),
+  //           ),
+  //           const PopupMenuItem<SampleItem>(
+  //             value: SampleItem.itemTwo,
+  //             child: Text('Item 2'),
+  //           ),
+  //           const PopupMenuItem<SampleItem>(
+  //             value: SampleItem.itemThree,
+  //             child: Text('Item 3'),
+  //           ),
+  //         ],
+  //       ),
+  //       // Row(
+  //       //   children: [
+  //       //     Image.asset('assets/diamond.png', height: 8, width: 8),
+  //       //     Image.asset('assets/diamond.png', height: 8, width: 8),
+  //       //     Image.asset('assets/diamond.png', height: 8, width: 8),
+  //       //   ],
+  //       // )
+  //     ],
+  //   );
+  // }
 
   Widget back() {
     return InkWell(
@@ -230,6 +259,92 @@ class _ProfilePageState extends State<ProfilePage> {
         _buildChip('sagitarius', Color(0xFF222421)),
         _buildChip('rooster', const Color(0xFF222421)),
       ],
+    );
+  }
+}
+
+class _Header extends StatefulWidget {
+  String username;
+  _Header({
+    super.key,
+    required this.username,
+  });
+
+  @override
+  State<_Header> createState() => _HeaderState();
+}
+
+class _HeaderState extends State<_Header> {
+  SampleItem? selectedMenu;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        back(),
+        Text(
+          widget.username,
+          textAlign: TextAlign.center,
+          style: whiteTextStyle.copyWith(fontSize: 14, fontWeight: semiBold),
+        ),
+        PopupMenuButton<SampleItem>(
+          color: Colors.white,
+          initialValue: selectedMenu,
+          // Callback that sets the selected popup menu item.
+          onSelected: (SampleItem item) {
+            if (item == SampleItem.itemOne) {
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  PageRouteBuilder(pageBuilder:
+                      (BuildContext context, Animation animation, Animation secondaryAnimation) {
+                    return const LoginPage();
+                  }, transitionsBuilder: (BuildContext context, Animation<double> animation,
+                      Animation<double> secondaryAnimation, Widget child) {
+                    return new SlideTransition(
+                      position: new Tween<Offset>(
+                        begin: const Offset(1.0, 0.0),
+                        end: Offset.zero,
+                      ).animate(animation),
+                      child: child,
+                    );
+                  }),
+                  (Route route) => false);
+            }
+            setState(() {
+              selectedMenu = item;
+            });
+          },
+          itemBuilder: (BuildContext context) => <PopupMenuEntry<SampleItem>>[
+            const PopupMenuItem<SampleItem>(
+              value: SampleItem.itemOne,
+              child: Text('Logout'),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget back() {
+    return InkWell(
+      onTap: () {},
+      child: Container(
+        // transform: Matrix4.translationValues(-10.0, 0.0, 0.0),
+        child: Row(
+          children: [
+            BackButtonChevron(
+              onBackPressed: () {},
+              backButtonColor: white,
+            ),
+            Text(
+              'Back',
+              style: whiteTextStyle.copyWith(fontSize: 14, fontWeight: bold),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
