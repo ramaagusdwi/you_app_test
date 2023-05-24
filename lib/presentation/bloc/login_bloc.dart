@@ -46,13 +46,11 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     LoginEntity entity = LoginEntity(email: state.email.value, password: state.password.value);
     final result = await login.execute(entity);
 
-    result.fold((error) {
-      log('masukSini2');
+    result.fold((error) {  
       emit(
         state.copyWith(status: FormzSubmissionStatus.failure, errorMessage: error.message),
       );
-    }, (data) {
-      log('masukSini');
+    }, (data) {      
       emit(state.copyWith(
         status: FormzSubmissionStatus.success,
         errorMessage: data,
