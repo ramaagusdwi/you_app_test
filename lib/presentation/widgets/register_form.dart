@@ -159,8 +159,7 @@ class _UsernameInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<RegisterBloc, RegisterState>(
-      buildWhen: (previous, current) =>    
-          previous.username != current.username,
+      buildWhen: (previous, current) => previous.username != current.username,
       builder: (context, state) {
         return Container(
           margin: const EdgeInsets.only(bottom: largeMargin),
@@ -301,9 +300,6 @@ class _ConfirmPasswordInputState extends State<_ConfirmPasswordInput> {
             },
             onChanged: (value) =>
                 context.read<RegisterBloc>().add(RegisterConfirmationPasswordChanged(value!)),
-            // errorText: state.confirmationPassword.displayError != null
-            //     ? 'Minimum 8 character, only letter and number'
-            //     : null,
             errorText: setErrorTextConfirmationPassword(state),
             errorStyle: whiteOpacity40TextStyle,
           ),
@@ -316,10 +312,10 @@ class _ConfirmPasswordInputState extends State<_ConfirmPasswordInput> {
     log('displayErrorPasswdConf: ${state.confirmationPassword.displayError}');
     if (state.confirmationPassword.displayError != null) {
       if (state.confirmationPassword.displayError == ConfirmationPasswordValidationError.notMatch) {
-        return 'Password tidak sama';
+        return 'Confirmation Password not match with current passwor';
       } else if (state.confirmationPassword.displayError ==
           ConfirmationPasswordValidationError.invalid) {
-        return 'Minimum 8 character, only letter and number';
+        return 'Minimum 8 character, \nThe password consist of letter and number';
       }
     }
     return null;
