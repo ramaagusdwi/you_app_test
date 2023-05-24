@@ -16,10 +16,9 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
 
   @override
   Future<String> login(Map<String, dynamic> body) async {
-    final res = await _dio.post(ApiPathConstants.login, data: body);
-    String loginResponseModel = jsonEncode(res.data);
-
-    return loginResponseModel;
+    final res = await _dio.get(ApiPathConstants.login, queryParameters: body);
+    Map data = res.data;
+    return data['message'];
   }
 
   @override

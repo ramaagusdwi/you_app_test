@@ -34,5 +34,7 @@ class MyApp extends StatelessWidget {
             home: LoginPage(),
           );
         });
+
+    // SEMANGAT TERUS, RAM !!!
   }
 }

@@ -6,7 +6,7 @@ import 'package:flutter_you_app/domain/repositories/auth_repository.dart';
 class Login {
   final AuthRepository _repository;
   Login(this._repository);
-  Future<Either<AppError, bool>> execute(LoginEntity entity) async {
+  Future<Either<AppError, String>> execute(LoginEntity entity) async {
     return _repository.login(
       entity,
     );

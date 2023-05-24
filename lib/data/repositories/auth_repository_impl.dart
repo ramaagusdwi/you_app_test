@@ -26,13 +26,15 @@ class AuthRepositoryImpl implements AuthRepository {
   String? _accessToken;
 
   @override
-  Future<Either<AppError, bool>> login(
+  Future<Either<AppError, String>> login(
     LoginEntity loginEntity,
   ) async {
     try {
       String loginResponseModel = await _remoteDataSource.login(loginEntity.json);
-
-      return const Right(true);
+      if (loginResponseModel.contains('User not found')) {
+        return const Left(AppError('User not found!'));
+      }
+      return Right(loginResponseModel);
     } on SocketException catch (_) {
       return const Left(SocketError());
     } on Exception catch (e, trace) {

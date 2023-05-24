@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_you_app/core/route/routes.dart';
+import 'package:flutter_you_app/domain/entities/login_entity.dart';
 import 'package:flutter_you_app/presentation/bloc/login_bloc.dart';
 import 'package:flutter_you_app/presentation/bloc/login_event.dart';
 import 'package:flutter_you_app/presentation/widgets/back_button_chevron.dart';
@@ -16,12 +17,11 @@ class LoginForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _form = GlobalKey<FormState>();
-    final TextEditingController emailController = TextEditingController();
-    final TextEditingController passwordController = TextEditingController();
 
     return BlocListener<LoginBloc, LoginState>(
       listener: (context, state) {
         if (state.status.isFailure) {
+          debugPrint('loginFailure');
           ScaffoldMessenger.of(context)
             ..hideCurrentSnackBar()
             ..showSnackBar(
@@ -29,6 +29,10 @@ class LoginForm extends StatelessWidget {
                 content: Text(state.errorMessage ?? 'Authentication Failure'),
               ),
             );
+        }
+        if (state.status.isSuccess) {
+          debugPrint('loginSuccess');
+          Navigator.of(context).pushReplacementNamed(Routes.profile);
         }
       },
       child: Form(
@@ -42,7 +46,7 @@ class LoginForm extends StatelessWidget {
               _header(),
               _EmailInput(),
               _PasswordInput(),
-              _LoginButton(),        
+              _LoginButton(),
               _footer(context),
             ],
           ),
@@ -78,45 +82,6 @@ class LoginForm extends StatelessWidget {
       child: Text(
         'Login',
         style: whiteTextStyle.copyWith(fontSize: 24, fontWeight: bold),
-      ),
-    );
-  }
-
-  Widget emailInput(TextEditingController emailController) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: normalMargin),
-      child: CustomTextField(
-          filledColor: const Color(0xFF243C41).withOpacity(1.0),
-          textEditingController: emailController,
-          labelText: 'Enter Username/Email',
-          labelStyle: whiteOpacity40TextStyle,
-          hintText: 'Enter Username/Email',
-          hintStyle: whiteOpacity40TextStyle,
-          validator: (value) {
-            if (value == null || value.isEmpty) {
-              return 'Please enter your username/email';
-            }
-            return null;
-          }),
-    );
-  }
-
-  
-
-  Widget signInButton(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 50),
-      child: Opacity(
-        // opacity: 0.4, //opacity 0.4 when username & password field not filled
-        opacity: 1.0, //opacity 0.4 when username & password field not filled
-        child: PrimaryButton(
-          title: 'Login',
-          height: 51.0,
-          radius: 9.0,
-          onPressed: () {
-            Navigator.of(context).pushReplacementNamed(Routes.profile);
-          },
-        ),
       ),
     );
   }
@@ -250,7 +215,7 @@ class _LoginButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<LoginBloc, LoginState>(
-      builder: (context, state) {      
+      builder: (context, state) {
         return state.status.isInProgress
             ? const CircularProgressIndicator()
             : Container(
@@ -264,13 +229,8 @@ class _LoginButton extends StatelessWidget {
                     title: 'Login',
                     height: 51.0,
                     radius: 9.0,
-                    // onPressed: () {
-                    //   Navigator.of(context).pushReplacementNamed(Routes.profile);
-                    // },
-                    onPressed: state.isValid ? () {} : null,
-                    // onPressed: state.isValid
-                    //     ? () => context.read<LoginCubit>().logInWithCredentials()
-                    //     : null,
+                    onPressed:
+                        state.isValid ? () => context.read<LoginBloc>().add(LoginPressed()) : null,
                   ),
                 ),
               );

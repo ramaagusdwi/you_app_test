@@ -3,7 +3,7 @@ import 'package:flutter_you_app/core/constant/api_path_constant.dart';
 
 class Api {
   final dio = createDio();
-  final tokenDio = Dio(BaseOptions(baseUrl: ApiPathConstants.BASE_URL));
+  final tokenDio = Dio(BaseOptions(baseUrl: ApiPathConstants.baseUrl));
 
   Api._internal();
 
@@ -14,7 +14,7 @@ class Api {
   static Dio createDio() {
     var dio = Dio(BaseOptions(
       headers: {'Content-Type': 'application/json'},
-      baseUrl: ApiPathConstants.BASE_URL,
+      baseUrl: ApiPathConstants.baseUrl,
       receiveTimeout: Duration(seconds: 15000), // 15 seconds
       connectTimeout: Duration(seconds: 15000),
       sendTimeout: Duration(seconds: 15000),
