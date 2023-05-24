@@ -43,7 +43,7 @@ class _ProfilePageState extends State<ProfilePage> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 const SizedBox(height: 40),
-                header(),
+                header(widget.username),
                 const SizedBox(height: 28),
                 //before add photo
                 isUpdateData
@@ -101,7 +101,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               Align(
                                 alignment: Alignment.bottomLeft,
                                 child: Text(
-                                  '@johndoe123,',
+                                  widget.username,
                                   style: whiteTextStyle.copyWith(
                                     fontSize: 16,
                                     fontWeight: bold,
@@ -131,14 +131,14 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 
-  Widget header() {
+  Widget header(String username) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         back(),
         Text(
-          '@johndoe',
+          username,
           textAlign: TextAlign.center,
           style: whiteTextStyle.copyWith(fontSize: 14, fontWeight: semiBold),
         ),
