@@ -51,7 +51,7 @@ class RegisterForm extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _back(),
+              _back(context),
               _header(),
               _EmailInput(),
               _UsernameInput(),
@@ -66,9 +66,11 @@ class RegisterForm extends StatelessWidget {
     );
   }
 
-  Widget _back() {
+  Widget _back(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Navigator.pop(context);
+      },
       child: Container(
         margin: const EdgeInsets.only(top: 49, bottom: 60),
         child: Row(
