@@ -76,7 +76,9 @@ class RegisterForm extends StatelessWidget {
         child: Row(
           children: [
             BackButtonChevron(
-              onBackPressed: () {},
+              onBackPressed: () {
+                Navigator.pop(context);
+              },
               backButtonColor: white,
             ),
             Text(
