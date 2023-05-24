@@ -159,10 +159,7 @@ class _UsernameInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<RegisterBloc, RegisterState>(
-      buildWhen: (previous, current) =>
-          previous.email != current.email ||
-          previous.password != current.password ||
-          previous.confirmationPassword != current.confirmationPassword ||
+      buildWhen: (previous, current) =>    
           previous.username != current.username,
       builder: (context, state) {
         return Container(
@@ -264,7 +261,8 @@ class _ConfirmPasswordInputState extends State<_ConfirmPasswordInput> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<RegisterBloc, RegisterState>(
-      buildWhen: (previous, current) => previous.password != current.password,
+      buildWhen: (previous, current) =>
+          previous.confirmationPassword != current.confirmationPassword,
       builder: (context, state) {
         log('displayErrorConfirmationPass: ${state.confirmationPassword.displayError}');
         return Container(
@@ -306,20 +304,25 @@ class _ConfirmPasswordInputState extends State<_ConfirmPasswordInput> {
             // errorText: state.confirmationPassword.displayError != null
             //     ? 'Minimum 8 character, only letter and number'
             //     : null,
-            errorText: state.confirmationPassword.displayError != null
-                ? (state.confirmationPassword.displayError ==
-                        ConfirmationPasswordValidationError.notMatch)
-                    ? 'Password tidak sama'
-                    : (state.confirmationPassword.displayError ==
-                            ConfirmationPasswordValidationError.invalid)
-                        ? 'Minimum 8 character, only letter and number'
-                        : null
-                : null,
+            errorText: setErrorTextConfirmationPassword(state),
             errorStyle: whiteOpacity40TextStyle,
           ),
         );
       },
     );
+  }
+
+  String? setErrorTextConfirmationPassword(RegisterState state) {
+    log('displayErrorPasswdConf: ${state.confirmationPassword.displayError}');
+    if (state.confirmationPassword.displayError != null) {
+      if (state.confirmationPassword.displayError == ConfirmationPasswordValidationError.notMatch) {
+        return 'Password tidak sama';
+      } else if (state.confirmationPassword.displayError ==
+          ConfirmationPasswordValidationError.invalid) {
+        return 'Minimum 8 character, only letter and number';
+      }
+    }
+    return null;
   }
 }
 
