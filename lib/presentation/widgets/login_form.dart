@@ -21,6 +21,7 @@ class LoginForm extends StatelessWidget {
     return BlocListener<LoginBloc, LoginState>(
       listener: (context, state) {
         if (state.status.isFailure) {
+          FocusManager.instance.primaryFocus?.unfocus();
           debugPrint('loginFailure');
           ScaffoldMessenger.of(context)
             ..hideCurrentSnackBar()
@@ -30,7 +31,7 @@ class LoginForm extends StatelessWidget {
               ),
             );
         }
-        if (state.status.isSuccess) {
+        if (state.status.isSuccess) {          
           debugPrint('loginSuccess');
           Navigator.of(context).pushReplacementNamed(Routes.profile);
         }
