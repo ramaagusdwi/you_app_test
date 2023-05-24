@@ -38,98 +38,101 @@ class _ProfilePageState extends State<ProfilePage> {
             backgroundColor: backgroundColor3,
           )),
       resizeToAvoidBottomInset: false,
-      body: SafeArea(
-        child: Container(
-          height: double.infinity,
-          margin: const EdgeInsets.symmetric(horizontal: 10.0),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const SizedBox(height: 40),
-                // header(widget.username),
-                _Header(username: widget.username),
-                const SizedBox(height: 28),
-                //before add photo
-                isUpdateData
-                    ? Flexible(
-                        child: Container(
-                          height: 190,
-                          width: double.infinity,
-                          decoration: const BoxDecoration(
-                            image: DecorationImage(
-                              fit: BoxFit.fitWidth,
-                              image: AssetImage('assets/men.jpg'),
+      body: WillPopScope(
+        onWillPop: () async => false,
+        child: SafeArea(
+          child: Container(
+            height: double.infinity,
+            margin: const EdgeInsets.symmetric(horizontal: 10.0),
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const SizedBox(height: 40),
+                  // header(widget.username),
+                  _Header(username: widget.username),
+                  const SizedBox(height: 28),
+                  //before add photo
+                  isUpdateData
+                      ? Flexible(
+                          child: Container(
+                            height: 190,
+                            width: double.infinity,
+                            decoration: const BoxDecoration(
+                              image: DecorationImage(
+                                fit: BoxFit.fitWidth,
+                                image: AssetImage('assets/men.jpg'),
+                              ),
+                              borderRadius: BorderRadius.all(Radius.circular(16.0)),
                             ),
-                            borderRadius: BorderRadius.all(Radius.circular(16.0)),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 14),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const Spacer(),
+                                  Text(
+                                    '@johndoe123, 28',
+                                    style: whiteTextStyle.copyWith(
+                                      fontSize: 16,
+                                      fontWeight: bold,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 6),
+                                  Text(
+                                    'Male',
+                                    style: whiteTextStyle.copyWith(
+                                      fontSize: 13,
+                                      fontWeight: medium,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 12),
+                                  chipList(),
+                                ],
+                              ),
+                            ),
                           ),
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 14),
+                        )
+                      : Flexible(
+                          child: Container(
+                            height: 190,
+                            padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 17),
+                            decoration: const BoxDecoration(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(16),
+                                ),
+                                color: grey),
                             child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 const Spacer(),
-                                Text(
-                                  '@johndoe123, 28',
-                                  style: whiteTextStyle.copyWith(
-                                    fontSize: 16,
-                                    fontWeight: bold,
+                                Align(
+                                  alignment: Alignment.bottomLeft,
+                                  child: Text(
+                                    widget.username,
+                                    style: whiteTextStyle.copyWith(
+                                      fontSize: 16,
+                                      fontWeight: bold,
+                                    ),
                                   ),
                                 ),
-                                const SizedBox(height: 6),
-                                Text(
-                                  'Male',
-                                  style: whiteTextStyle.copyWith(
-                                    fontSize: 13,
-                                    fontWeight: medium,
-                                  ),
-                                ),
-                                const SizedBox(height: 12),
-                                chipList(),
                               ],
                             ),
                           ),
                         ),
-                      )
-                    : Flexible(
-                        child: Container(
-                          height: 190,
-                          padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 17),
-                          decoration: const BoxDecoration(
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(16),
-                              ),
-                              color: grey),
-                          child: Column(
-                            children: [
-                              const Spacer(),
-                              Align(
-                                alignment: Alignment.bottomLeft,
-                                child: Text(
-                                  widget.username,
-                                  style: whiteTextStyle.copyWith(
-                                    fontSize: 16,
-                                    fontWeight: bold,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                const SizedBox(height: 24),
-                Flexible(child: About(
-                  updateDataCallback: (value) {
-                    setState(() {
-                      isUpdateData = value;
-                    });
-                  },
-                )),
-                const SizedBox(height: 24),
-                const Flexible(child: Interest()),
-                const SizedBox(height: 40),
-              ],
+                  const SizedBox(height: 24),
+                  Flexible(child: About(
+                    updateDataCallback: (value) {
+                      setState(() {
+                        isUpdateData = value;
+                      });
+                    },
+                  )),
+                  const SizedBox(height: 24),
+                  const Flexible(child: Interest()),
+                  const SizedBox(height: 40),
+                ],
+              ),
             ),
           ),
         ),
