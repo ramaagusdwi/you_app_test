@@ -19,8 +19,12 @@ class InterestRepositoryImpl extends InterestRepository {
   }
 
   @override
-  Future<Either<AppError, List<String>>> getAllInterest() {
-    // TODO: implement getAllInterest
-    interestLocalDataSource.getAllInterest();
+  Future<Either<AppError, List<String>>> getAllInterest() async {
+    try {
+      final result = await interestLocalDataSource.getAllInterest();
+      return Right(result ?? []);
+    } on Exception catch (e) {
+      return const Left(AppError('Faield get interest data!'));
+    }
   }
 }

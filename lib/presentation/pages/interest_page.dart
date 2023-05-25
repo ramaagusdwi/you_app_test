@@ -2,7 +2,10 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_you_app/presentation/bloc/interest_bloc.dart';
+import 'package:flutter_you_app/presentation/pages/interest_list.dart';
 import 'package:flutter_you_app/shared_view/back_button_chevron.dart';
 import 'package:flutter_you_app/resource/theme.dart';
 import 'package:flutter_you_app/shared_view/custom_text_field.dart';
@@ -81,53 +84,47 @@ class _InterestPageState extends State<InterestPage> {
                 SizedBox(height: 35.w),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 4.w),
-                  child: interestInput(interestController),
+                  child: _interestInputWidget(interestController, context),
                 ),
                 SizedBox(height: 20.w),
-                if (interests.isNotEmpty) ...[
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 4.w),
-                    child: Text('Select Interest', style: whiteOpacity40TextStyle),
-                  ),
-                  SizedBox(height: 8.w),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 4.w),
-                    child: Wrap(
-                        direction: Axis.horizontal,
-                        spacing: 4,
-                        runSpacing: 8,
-                        children: interests
-                            .map((item) => Container(
-                                padding: const EdgeInsets.all(8),
-                                decoration: const BoxDecoration(
-                                  color: whiteOpacity10,
-                                  borderRadius: BorderRadius.all(Radius.circular(4)),
-                                ),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Text(item,
-                                        style: whiteTextStyle.copyWith(
-                                            fontSize: 12, fontWeight: semiBold)),
-                                    SizedBox(width: 10.w),
-                                    InkWell(
-                                      onTap: () {
-                                         //TO DO Call function remove interest from local 
-                                        interests.removeWhere((element) => element == item);
-                                        setState(() {});
-                                      },
-                                      child: Icon(
-                                        Icons.close,
-                                        size: 14.w,
-                                        color: white,
-                                      ),
-                                    )
-                                  ],
-                                )))
-                            .toList()),
-                  ),
-                ], 
-               
+            
+                const InterestList(),
+                // Padding(
+                //   padding: EdgeInsets.symmetric(horizontal: 4.w),
+                //   child: Wrap(
+                //       direction: Axis.horizontal,
+                //       spacing: 4,
+                //       runSpacing: 8,
+                //       children: interests
+                //           .map((item) => Container(
+                //               padding: const EdgeInsets.all(8),
+                //               decoration: const BoxDecoration(
+                //                 color: whiteOpacity10,
+                //                 borderRadius: BorderRadius.all(Radius.circular(4)),
+                //               ),
+                //               child: Row(
+                //                 mainAxisSize: MainAxisSize.min,
+                //                 children: [
+                //                   Text(item,
+                //                       style: whiteTextStyle.copyWith(
+                //                           fontSize: 12, fontWeight: semiBold)),
+                //                   SizedBox(width: 10.w),
+                //                   InkWell(
+                //                     onTap: () {
+                //                       //TO DO Call function remove interest from local
+                //                       interests.removeWhere((element) => element == item);
+                //                       setState(() {});
+                //                     },
+                //                     child: Icon(
+                //                       Icons.close,
+                //                       size: 14.w,
+                //                       color: white,
+                //                     ),
+                //                   )
+                //                 ],
+                //               )))
+                //           .toList()),
+                // ),
                 
               ],
             ),
@@ -137,7 +134,7 @@ class _InterestPageState extends State<InterestPage> {
     );
   }
 
-  Widget interestInput(TextEditingController controller) {
+  Widget _interestInputWidget(TextEditingController controller, BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(bottom: normalMargin),
       child: CustomTextField(
@@ -153,8 +150,8 @@ class _InterestPageState extends State<InterestPage> {
         },
         onSubmitted: (value) {
           log('submitted');
-
-          adjustTextFieldHeight(value!);
+          context.read<InterestBloc>().add(InterestTextFieldSubmited(value!));
+          // adjustTextFieldHeight(value!);
         },
       ),
     );

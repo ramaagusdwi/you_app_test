@@ -1,6 +1,4 @@
-
-
-import 'package:flutter_you_app/domain/entities/login_entity.dart';
+part of 'login_bloc.dart';
 
 class LoginEvent {}
 

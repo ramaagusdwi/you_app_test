@@ -6,11 +6,11 @@ import 'package:flutter_you_app/data/models/email.dart';
 import 'package:flutter_you_app/data/models/password.dart';
 import 'package:flutter_you_app/domain/entities/login_entity.dart';
 import 'package:flutter_you_app/domain/usecase/login.dart';
-import 'package:flutter_you_app/presentation/bloc/login_event.dart';
 
 import 'package:formz/formz.dart';
 
 part 'login_state.dart';
+part 'login_event.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   final Login login;
