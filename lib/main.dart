@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_you_app/core/logger/simple_bloc_observer.dart';
 import 'package:flutter_you_app/core/route/router.dart';
 
 import 'package:flutter_you_app/presentation/pages/login_page.dart';
@@ -10,6 +12,9 @@ void main() async {
   await ScreenUtil.ensureScreenSize();
 
   await configureDependencies();
+
+  //bloc observer to log transitions and any errors.
+  Bloc.observer = const SimpleBlocObserver();
   runApp(const MyApp());
 }
 
