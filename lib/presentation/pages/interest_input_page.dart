@@ -89,42 +89,7 @@ class _InterestInputPageState extends State<InterestInputPage> {
                 SizedBox(height: 20.w),
 
                 const InterestList(),
-                // Padding(
-                //   padding: EdgeInsets.symmetric(horizontal: 4.w),
-                //   child: Wrap(
-                //       direction: Axis.horizontal,
-                //       spacing: 4,
-                //       runSpacing: 8,
-                //       children: interests
-                //           .map((item) => Container(
-                //               padding: const EdgeInsets.all(8),
-                //               decoration: const BoxDecoration(
-                //                 color: whiteOpacity10,
-                //                 borderRadius: BorderRadius.all(Radius.circular(4)),
-                //               ),
-                //               child: Row(
-                //                 mainAxisSize: MainAxisSize.min,
-                //                 children: [
-                //                   Text(item,
-                //                       style: whiteTextStyle.copyWith(
-                //                           fontSize: 12, fontWeight: semiBold)),
-                //                   SizedBox(width: 10.w),
-                //                   InkWell(
-                //                     onTap: () {
-                //                       //TO DO Call function remove interest from local
-                //                       interests.removeWhere((element) => element == item);
-                //                       setState(() {});
-                //                     },
-                //                     child: Icon(
-                //                       Icons.close,
-                //                       size: 14.w,
-                //                       color: white,
-                //                     ),
-                //                   )
-                //                 ],
-                //               )))
-                //           .toList()),
-                // ),
+              
               ],
             ),
           ),
