@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_you_app/core/route/routes.dart';
 import 'package:flutter_you_app/presentation/bloc/interest_bloc.dart';
 import 'package:flutter_you_app/presentation/pages/login_page.dart';
-import 'package:flutter_you_app/presentation/pages/interest_page.dart';
+import 'package:flutter_you_app/presentation/pages/interest_input_page.dart';
 import 'package:flutter_you_app/presentation/pages/profile_page.dart';
 import 'package:flutter_you_app/presentation/pages/register_page.dart';
 
@@ -26,7 +26,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
 
     case Routes.interest:
       return MaterialPageRoute(
-        builder: (_) => InterestPage(),
+        builder: (_) => const InterestInputPage(),
       );
 
     default:

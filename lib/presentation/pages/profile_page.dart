@@ -129,6 +129,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   )),
                   const SizedBox(height: 24),
                   const Flexible(child: Interest()),
+                  // Interest(),
                   const SizedBox(height: 40),
                 ],
               ),

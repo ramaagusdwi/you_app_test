@@ -11,14 +11,14 @@ import 'package:flutter_you_app/resource/theme.dart';
 import 'package:flutter_you_app/shared_view/custom_text_field.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 
-class InterestPage extends StatefulWidget {
-  const InterestPage({super.key});
+class InterestInputPage extends StatefulWidget {
+  const InterestInputPage({super.key});
 
   @override
-  State<InterestPage> createState() => _InterestPageState();
+  State<InterestInputPage> createState() => _InterestInputPageState();
 }
 
-class _InterestPageState extends State<InterestPage> {
+class _InterestInputPageState extends State<InterestInputPage> {
   List<String> interests = [];
   int maxLines = 1; // Adjust this value as needed
 
@@ -60,7 +60,7 @@ class _InterestPageState extends State<InterestPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     back(context),
-                    save(),
+                    save(context, interestController),
                   ],
                 ),
                 SizedBox(height: 73.w),
@@ -87,7 +87,7 @@ class _InterestPageState extends State<InterestPage> {
                   child: _interestInputWidget(interestController, context),
                 ),
                 SizedBox(height: 20.w),
-            
+
                 const InterestList(),
                 // Padding(
                 //   padding: EdgeInsets.symmetric(horizontal: 4.w),
@@ -125,7 +125,6 @@ class _InterestPageState extends State<InterestPage> {
                 //               )))
                 //           .toList()),
                 // ),
-                
               ],
             ),
           ),
@@ -151,22 +150,10 @@ class _InterestPageState extends State<InterestPage> {
         onSubmitted: (value) {
           log('submitted');
           context.read<InterestBloc>().add(InterestTextFieldSubmited(value!));
-          // adjustTextFieldHeight(value!);
+          Navigator.pop(context);
         },
       ),
     );
-  }
-
-  void adjustTextFieldHeight(String value) {
-    interests.add(value);
-    // final lines = value.split('\n').length;
-
-    // // Set maximum number of lines
-    // final maxLines = 5; // Adjust this value as needed
-    final length = interests.length;
-    setState(() {
-      maxLines = length > 2 ? maxLines + 1 : maxLines;
-    });
   }
 
   String setTextFieldLabel() {
@@ -174,17 +161,25 @@ class _InterestPageState extends State<InterestPage> {
     return '';
   }
 
-  Widget save() {
-    return GradientText(
-      'Save',
-      style: TextStyle(
-        fontSize: 14.0,
-        fontWeight: semiBold,
+  Widget save(BuildContext context, TextEditingController controller) {
+    return InkWell(
+      onTap: () {
+        // context.read<InterestBloc>().add(InterestFetched());
+        String value = controller.text.trim();
+        context.read<InterestBloc>().add(InterestTextFieldSubmited(value));
+        Navigator.pop(context);
+      },
+      child: GradientText(
+        'Save',
+        style: TextStyle(
+          fontSize: 14.0,
+          fontWeight: semiBold,
+        ),
+        colors: const [
+          blueDowny,
+          celestialBlue,
+        ],
       ),
-      colors: const [
-        blueDowny,
-        celestialBlue,
-      ],
     );
   }
 
