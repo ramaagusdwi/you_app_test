@@ -66,7 +66,7 @@ class _InterestState extends State<Interest> {
                       ),
                     )
                   ] else ...[
-                    chipList(state),
+                    _interestChipList(state),
                   ]
                 ]),
           ),
@@ -75,23 +75,27 @@ class _InterestState extends State<Interest> {
     );
   }
 
-  chipList(List<String> state) {
+  _interestChipList(List<String> state) {
     return Padding(
       padding: const EdgeInsets.only(top: 8.0),
       child:
-          Wrap(spacing: 12.0, runSpacing: 6.0, children: state.map((e) => _buildChip(e)).toList()),
+          Wrap(
+        spacing: 12.0,
+        runSpacing: 12.0,
+        children: state.map((e) => _buildItem(e)).toList(),
+      ),
     );
   }
 
-  Widget _buildChip(String label) {
-    return Chip(
-      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 18),
-      backgroundColor: const Color(0xE61C272C),
-      label: Text(label),
-      labelStyle: const TextStyle(
-        color: Colors.white,
-        fontWeight: FontWeight.w600,
+
+  Widget _buildItem(String label) {
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+      decoration: const BoxDecoration(
+        color: itemInterestColor,
+        borderRadius: BorderRadius.all(Radius.circular(100)),
       ),
+      child: Text(label, style: whiteTextStyle.copyWith(fontSize: 12, fontWeight: semiBold)),
     );
   }
 }

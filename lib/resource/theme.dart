@@ -39,6 +39,8 @@ const Color whiteOpacity6 = Color(0x33FFFFFF);
 const Color whiteOpacity10 = Color(0x1AFFFFFF);
 const Color bgTextField2 = Color(0x1AD9D9D9);
 
+const Color itemInterestColor = Color(0xE61C272C);
+
 const List<Color> goldensColor = [
   Color(0xff94783E),
   Color(0xffF3EDA6),
@@ -75,8 +77,6 @@ TextStyle whiteOpacity40TextStyle = GoogleFonts.inter(
 TextStyle whiteOpacity52TextStyle = GoogleFonts.inter(
   color: white.withOpacity(0.52),
 );
-
-
 
 TextStyle blackTextStyle = GoogleFonts.inter(
   color: blackColor,
