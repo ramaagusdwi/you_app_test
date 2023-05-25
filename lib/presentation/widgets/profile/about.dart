@@ -39,7 +39,12 @@ class _AboutState extends State<About> {
               });
             })
           : isUpdateData
-              ? AboutContentWithData(onTap: () {})
+              ? AboutContentWithData(onTap: () {
+                  setState(() {
+                    isEditState = true;
+                    isUpdateData = true;
+                  });
+                })
               : EditAboutContent(onTap: () {
                   setState(() {
                     isEditState = false;
