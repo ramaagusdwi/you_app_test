@@ -49,8 +49,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const SizedBox(height: 40),
-                  // header(widget.username),
+                  const SizedBox(height: 40), 
                   _Header(username: widget.username),
                   const SizedBox(height: 28),
                   //before add photo
@@ -140,50 +139,6 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 
-  // Widget header(String username) {
-  //   return Row(
-  //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //     crossAxisAlignment: CrossAxisAlignment.center,
-  //     children: [
-  //       back(),
-  //       Text(
-  //         username,
-  //         textAlign: TextAlign.center,
-  //         style: whiteTextStyle.copyWith(fontSize: 14, fontWeight: semiBold),
-  //       ),
-  //       PopupMenuButton<SampleItem>(
-  //         initialValue: '',
-  //         // Callback that sets the selected popup menu item.
-  //         onSelected: (SampleItem item) {
-  //           setState(() {
-  //             selectedMenu = item;
-  //           });
-  //         },
-  //         itemBuilder: (BuildContext context) => <PopupMenuEntry<SampleItem>>[
-  //           const PopupMenuItem<SampleItem>(
-  //             value: SampleItem.itemOne,
-  //             child: Text('Item 1'),
-  //           ),
-  //           const PopupMenuItem<SampleItem>(
-  //             value: SampleItem.itemTwo,
-  //             child: Text('Item 2'),
-  //           ),
-  //           const PopupMenuItem<SampleItem>(
-  //             value: SampleItem.itemThree,
-  //             child: Text('Item 3'),
-  //           ),
-  //         ],
-  //       ),
-  //       // Row(
-  //       //   children: [
-  //       //     Image.asset('assets/diamond.png', height: 8, width: 8),
-  //       //     Image.asset('assets/diamond.png', height: 8, width: 8),
-  //       //     Image.asset('assets/diamond.png', height: 8, width: 8),
-  //       //   ],
-  //       // )
-  //     ],
-  //   );
-  // }
 
   Widget back() {
     return InkWell(
