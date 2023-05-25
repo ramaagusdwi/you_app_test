@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_you_app/core/logger/simple_bloc_observer.dart';
 import 'package:flutter_you_app/core/route/router.dart';
+import 'package:flutter_you_app/presentation/bloc/interest_bloc.dart';
 
 import 'package:flutter_you_app/presentation/pages/login_page.dart';
 
@@ -29,14 +30,16 @@ class MyApp extends StatelessWidget {
         minTextAdapt: true,
         splitScreenMode: true,
         builder: (context, child) {
-          return MaterialApp(
-            title: 'You App',
-            theme: ThemeData(
-              primaryColor: Colors.black,
-              // primarySwatch: Colors.grey,
+          return BlocProvider(
+            create: (context) => InterestBloc(),
+            child: MaterialApp(
+              title: 'You App',
+              theme: ThemeData(
+                primaryColor: Colors.black,
+              ),
+              onGenerateRoute: generateRoute,
+              home: const LoginPage(),
             ),
-            onGenerateRoute: generateRoute,
-            home: const LoginPage(),
           );
         });
 

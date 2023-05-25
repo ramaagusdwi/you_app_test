@@ -26,10 +26,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
 
     case Routes.interest:
       return MaterialPageRoute(
-        builder: (_) => BlocProvider(
-          create: (context) => InterestBloc(),
-          child: InterestPage(),
-        ),
+        builder: (_) => InterestPage(),
       );
 
     default:
