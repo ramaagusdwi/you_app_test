@@ -9,6 +9,7 @@ import 'package:flutter_you_app/presentation/widgets/about_text_field_decoration
 import 'package:flutter_you_app/presentation/widgets/item_label_about.dart';
 import 'package:flutter_you_app/presentation/widgets/profile/add_image.dart';
 import 'package:flutter_you_app/shared_view/base_input_label.dart';
+import 'package:flutter_you_app/shared_view/edit_widget.dart';
 import 'package:intl/intl.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 
@@ -27,7 +28,7 @@ class _AboutState extends State<About> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.fromLTRB(16, 17, 16, 23),
+      padding: const EdgeInsets.fromLTRB(27, 18, 14, 23),
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(20)),
         color: blackPearlColor,
@@ -77,17 +78,10 @@ class AboutContent extends StatelessWidget {
                 fontWeight: bold,
               ),
             ),
-            InkWell(
+            EditWidget(
               onTap: onTap,
-              child: Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: SizedBox(
-                  height: 17,
-                  width: 17,
-                  child: Image.asset('assets/edit.png'),
-                ),
-              ),
             ),
+           
           ],
         ),
         // const Spacer(),

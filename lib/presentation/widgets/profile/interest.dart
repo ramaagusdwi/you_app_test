@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_you_app/core/route/routes.dart';
 import 'package:flutter_you_app/presentation/bloc/interest_bloc.dart';
 import 'package:flutter_you_app/resource/theme.dart';
+import 'package:flutter_you_app/shared_view/edit_widget.dart';
 
 class Interest extends StatefulWidget {
   const Interest({super.key});
@@ -19,7 +20,7 @@ class _InterestState extends State<Interest> {
       builder: (context, state) {
         return IntrinsicHeight(
           child: Container(
-            padding: const EdgeInsets.fromLTRB(27, 17, 27, 23),
+            padding: const EdgeInsets.fromLTRB(27, 17, 14, 23),
             decoration: const BoxDecoration(
               borderRadius: BorderRadius.all(
                 Radius.circular(20),
@@ -35,21 +36,27 @@ class _InterestState extends State<Interest> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        'Interest',
-                        style: whiteTextStyle.copyWith(
-                          fontSize: 14,
-                          fontWeight: bold,
+                      Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Text(
+                          'Interest',
+                          style: whiteTextStyle.copyWith(
+                            fontSize: 14,
+                            fontWeight: bold,
+                          ),
                         ),
                       ),
-                      InkWell(
+                      EditWidget(
                         onTap: () => Navigator.pushNamed(context, Routes.interest),
-                        child: Container(
-                          height: 17,
-                          width: 17,
-                          child: Image.asset('assets/edit.png'),
-                        ),
                       ),
+                      // InkWell(
+                      //   onTap: () => Navigator.pushNamed(context, Routes.interest),
+                      //   child: Container(
+                      //     height: 17,
+                      //     width: 17,
+                      //     child: Image.asset('assets/edit.png'),
+                      //   ),
+                      // ),
                     ],
                   ),
                   // const Spacer(),
