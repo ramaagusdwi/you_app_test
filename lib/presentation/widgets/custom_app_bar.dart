@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_you_app/presentation/widgets/back_button_chevron.dart';
-import 'package:flutter_you_app/core/theme.dart';
+import 'package:flutter_you_app/shared_view/back_button_chevron.dart';
+import 'package:flutter_you_app/resource/theme.dart';
 
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {

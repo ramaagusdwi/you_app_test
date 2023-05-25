@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_you_app/core/route/routes.dart';
-import 'package:flutter_you_app/core/theme.dart';
+import 'package:flutter_you_app/resource/theme.dart';
 
 class Interest extends StatefulWidget {
   const Interest({super.key});

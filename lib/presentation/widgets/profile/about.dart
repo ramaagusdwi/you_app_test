@@ -3,12 +3,12 @@ import 'dart:developer';
 import 'package:dropdown_textfield/dropdown_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_you_app/core/theme.dart';
+import 'package:flutter_you_app/resource/theme.dart';
 import 'package:flutter_you_app/core/utils/zodiac_sign.dart';
 import 'package:flutter_you_app/presentation/widgets/about_text_field_decoration.dart';
-import 'package:flutter_you_app/presentation/widgets/base_input_label.dart';
 import 'package:flutter_you_app/presentation/widgets/item_label_about.dart';
 import 'package:flutter_you_app/presentation/widgets/profile/add_image.dart';
+import 'package:flutter_you_app/shared_view/base_input_label.dart';
 import 'package:intl/intl.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 

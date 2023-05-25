@@ -3,9 +3,9 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_you_app/presentation/widgets/back_button_chevron.dart';
-import 'package:flutter_you_app/presentation/widgets/custom_text_field.dart';
-import 'package:flutter_you_app/core/theme.dart';
+import 'package:flutter_you_app/shared_view/back_button_chevron.dart';
+import 'package:flutter_you_app/resource/theme.dart';
+import 'package:flutter_you_app/shared_view/custom_text_field.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 
 class InterestPage extends StatefulWidget {
@@ -112,6 +112,7 @@ class _InterestPageState extends State<InterestPage> {
                                     SizedBox(width: 10.w),
                                     InkWell(
                                       onTap: () {
+                                         //TO DO Call function remove interest from local 
                                         interests.removeWhere((element) => element == item);
                                         setState(() {});
                                       },

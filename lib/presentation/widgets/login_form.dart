@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_you_app/core/route/routes.dart';
-import 'package:flutter_you_app/domain/entities/login_entity.dart';
 import 'package:flutter_you_app/presentation/bloc/login_bloc.dart';
 import 'package:flutter_you_app/presentation/bloc/login_event.dart';
 import 'package:flutter_you_app/presentation/pages/profile_page.dart';
-import 'package:flutter_you_app/presentation/widgets/back_button_chevron.dart';
-import 'package:flutter_you_app/presentation/widgets/custom_text_field.dart';
-import 'package:flutter_you_app/presentation/widgets/primary_button.dart';
-import 'package:flutter_you_app/core/theme.dart';
+import 'package:flutter_you_app/resource/theme.dart';
+import 'package:flutter_you_app/shared_view/back_button_chevron.dart';
+import 'package:flutter_you_app/shared_view/custom_text_field.dart';
+import 'package:flutter_you_app/shared_view/primary_button.dart';
 import 'package:formz/formz.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 

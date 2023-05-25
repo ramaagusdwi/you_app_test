@@ -1,17 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_you_app/core/route/routes.dart';
 import 'package:flutter_you_app/injection_container.dart';
-import 'package:flutter_you_app/presentation/bloc/login_bloc.dart';
 import 'package:flutter_you_app/presentation/bloc/register_bloc.dart';
-import 'package:flutter_you_app/presentation/widgets/back_button_chevron.dart';
-import 'package:flutter_you_app/presentation/widgets/custom_text_field.dart';
-import 'package:flutter_you_app/presentation/widgets/primary_button.dart';
 import 'package:flutter_you_app/presentation/widgets/register_form.dart';
-import 'package:flutter_you_app/presentation/widgets/small_circular_loading.dart';
-import 'package:flutter_you_app/core/theme.dart';
-import 'package:simple_gradient_text/simple_gradient_text.dart';
+import 'package:flutter_you_app/resource/theme.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});

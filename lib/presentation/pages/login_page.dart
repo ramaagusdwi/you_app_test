@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_you_app/core/theme.dart';
+import 'package:flutter_you_app/resource/theme.dart';
 import 'package:flutter_you_app/injection_container.dart';
 import 'package:flutter_you_app/presentation/bloc/login_bloc.dart';
 import 'package:flutter_you_app/presentation/widgets/login_form.dart';
