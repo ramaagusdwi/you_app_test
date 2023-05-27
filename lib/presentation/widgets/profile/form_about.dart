@@ -12,7 +12,7 @@ import 'package:flutter_you_app/presentation/bloc/about_bloc.dart';
 import 'package:flutter_you_app/presentation/widgets/about_text_field_decoration.dart';
 import 'package:flutter_you_app/presentation/widgets/profile/add_image.dart';
 import 'package:flutter_you_app/resource/theme.dart';
-import 'package:flutter_you_app/shared_view/base_input_label.dart';
+import 'package:flutter_you_app/shared_view/custom_text_field_with_left_label.dart';
 import 'package:intl/intl.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 
@@ -119,10 +119,10 @@ class _FormAboutState extends State<FormAbout> {
     );
   }
 
-  BaseInputLabel _weightInput() {
+  CustomTextFieldWithLeftLabel _weightInput() {
     int? weightValue = context.watch<AboutBloc>().state.aboutData.weight;
     String weightLabel = weightValue == null ? 'Add weight' : weightValue.toString();
-    return BaseInputLabel(
+    return CustomTextFieldWithLeftLabel(
       labelLeftText: 'Weight:',
       labelLeftStyle: whiteOpacity40TextStyle.copyWith(fontSize: 13, fontWeight: bold),
       enabled: true,
@@ -154,11 +154,11 @@ class _FormAboutState extends State<FormAbout> {
     );
   }
 
-  BaseInputLabel _heightInput() {
+  CustomTextFieldWithLeftLabel _heightInput() {
     int? heightValue = context.watch<AboutBloc>().state.aboutData.height;
     String heightLabel = heightValue == null ? 'Add height' : heightValue.toString();
     String heightHint = 'Add height';
-    return BaseInputLabel(
+    return CustomTextFieldWithLeftLabel(
       labelLeftText: 'Height:',
       labelLeftStyle: whiteOpacity40TextStyle.copyWith(fontSize: 13, fontWeight: bold),
       enabled: true,
@@ -192,9 +192,9 @@ class _FormAboutState extends State<FormAbout> {
     );
   }
 
-  BaseInputLabel _horoscopeInput() {
+  CustomTextFieldWithLeftLabel _horoscopeInput() {
     String? horoscopeValue = context.watch<AboutBloc>().state.aboutData.horoscope;
-    return BaseInputLabel(
+    return CustomTextFieldWithLeftLabel(
       labelLeftText: 'Horoscope:',
       labelLeftStyle: whiteOpacity40TextStyle.copyWith(fontSize: 13, fontWeight: bold),
       enabled: false,
@@ -212,9 +212,9 @@ class _FormAboutState extends State<FormAbout> {
     );
   }
 
-  BaseInputLabel _zodiacInput() {
+  CustomTextFieldWithLeftLabel _zodiacInput() {
     String? zodiacValue = context.watch<AboutBloc>().state.aboutData.zodiac;
-    return BaseInputLabel(
+    return CustomTextFieldWithLeftLabel(
       labelLeftText: 'Zodiac:',
       labelLeftStyle: whiteOpacity40TextStyle.copyWith(fontSize: 13, fontWeight: bold),
       enabled: false,
@@ -280,9 +280,9 @@ class _FormAboutState extends State<FormAbout> {
     );
   }
 
-  BaseInputLabel _displayNameInput() {
+  CustomTextFieldWithLeftLabel _displayNameInput() {
     String? displayName = context.watch<AboutBloc>().state.aboutData.displayName;
-    return BaseInputLabel(
+    return CustomTextFieldWithLeftLabel(
         labelLeftText: 'Display name:',
         labelLeftStyle: whiteOpacity40TextStyle.copyWith(fontSize: 13, fontWeight: bold),
         textAlign: TextAlign.left,
@@ -303,10 +303,10 @@ class _FormAboutState extends State<FormAbout> {
         });
   }
 
-  BaseInputLabel _birthdayInput(BuildContext context) {
+  CustomTextFieldWithLeftLabel _birthdayInput(BuildContext context) {
     DateTime? birthday = context.watch<AboutBloc>().state.aboutData.birthday;
 
-    return BaseInputLabel(
+    return CustomTextFieldWithLeftLabel(
       enabled: false,
       labelLeftText: 'Birthday:',
       labelLeftStyle: whiteOpacity40TextStyle.copyWith(

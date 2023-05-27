@@ -119,7 +119,7 @@ class RegisterForm extends StatelessWidget {
               Navigator.of(context).pushReplacementNamed(Routes.login);
             },
             child: GradientText(
-              'Register here',
+              'Login here',
               style: const TextStyle(
                 fontSize: 13.0,
                 decoration: TextDecoration.underline,

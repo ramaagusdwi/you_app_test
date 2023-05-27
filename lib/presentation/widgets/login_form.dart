@@ -133,10 +133,12 @@ class _EmailInput extends StatelessWidget {
     return BlocBuilder<LoginBloc, LoginState>(
       buildWhen: (previous, current) => previous.email != current.email,
       builder: (context, state) {
+        
         return Container(
           margin: const EdgeInsets.only(bottom: largeMargin),
           child: CustomTextField(
             filledColor: const Color(0xFF243C41).withOpacity(1.0),
+            useBorderSide: false,
             textEditingController: emailController,
             labelText: 'Enter Email',
             labelStyle: whiteOpacity40TextStyle,
@@ -182,6 +184,7 @@ class _PasswordInputState extends State<_PasswordInput> {
             labelStyle: whiteOpacity40TextStyle,
             hintText: 'Enter password',
             hintStyle: whiteOpacity40TextStyle,
+            useBorderSide: false,
             suffixIcon: ShaderMask(
               shaderCallback: (Rect bounds) {
                 return const LinearGradient(

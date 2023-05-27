@@ -4,7 +4,7 @@ import 'package:flutter_you_app/shared_view/custom_text_field.dart';
 
 
 
-class BaseInputLabel extends StatelessWidget {
+class CustomTextFieldWithLeftLabel extends StatelessWidget {
   final String labelText;
   final TextStyle labelStyle;
   final String hintText;
@@ -22,7 +22,7 @@ class BaseInputLabel extends StatelessWidget {
   final String? Function(String?)? onSubmitted;
   final String? Function(String?)? onChanged;
 
-  const BaseInputLabel({
+  const CustomTextFieldWithLeftLabel({
     super.key,
     required this.labelText,
     required this.labelStyle,

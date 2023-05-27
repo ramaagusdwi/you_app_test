@@ -41,6 +41,10 @@ const Color bgTextField2 = Color(0x1AD9D9D9);
 
 const Color itemInterestColor = Color(0xE61C272C);
 
+//border text field color
+Color get borderError => Colors.red.shade400;
+Color get borderActive => Colors.blue.shade400;
+
 const List<Color> goldensColor = [
   Color(0xff94783E),
   Color(0xffF3EDA6),
