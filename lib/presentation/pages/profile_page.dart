@@ -58,7 +58,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   _Header(username: widget.username),
                   const SizedBox(height: 28),
                   //cover photo profile user
-                  Flexible(child: CoverProfile(isUpdate: isUpdateData, username: widget.username)),
+                  Flexible(child: CoverProfile(username: widget.username)),
                   const SizedBox(height: 24),
                   const About(),
                   const SizedBox(height: 24),

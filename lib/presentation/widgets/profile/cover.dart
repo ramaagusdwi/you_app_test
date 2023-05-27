@@ -9,12 +9,11 @@ import 'package:flutter_you_app/resource/theme.dart';
 
 class CoverProfile extends StatelessWidget {
   final String username;
-  final bool isUpdate;
 
   const CoverProfile({
     Key? key,
     required this.username,
-    required this.isUpdate,
+
   }) : super(key: key);
 
   @override
