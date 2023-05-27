@@ -19,6 +19,8 @@ class BaseInputLabel extends StatelessWidget {
   final TextInputType? textInputType;
   final List<TextInputFormatter>? textInputFormatters;
   final Widget? suffixIcon;
+  final String? Function(String?)? onSubmitted;
+  final String? Function(String?)? onChanged;
 
   const BaseInputLabel({
     super.key,
@@ -36,6 +38,8 @@ class BaseInputLabel extends StatelessWidget {
     this.textInputType,
     this.textInputFormatters,
     this.suffixIcon,
+    this.onChanged,
+    this.onSubmitted,
   });
 
   @override
@@ -72,6 +76,8 @@ class BaseInputLabel extends StatelessWidget {
               textInputType: textInputType,
               inputTypeFormatters: textInputFormatters,
               suffixIcon: suffixIcon,
+              onChanged: onChanged,
+              onSubmitted: onSubmitted,
             ),
           ),
         ),

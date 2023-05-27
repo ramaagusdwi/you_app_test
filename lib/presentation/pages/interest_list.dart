@@ -12,7 +12,7 @@ class InterestList extends StatelessWidget {
     return BlocBuilder<InterestBloc, List<String>>(
       builder: (context, state) {
         if (state.isEmpty) {
-          return const Center(child: Text('no interest'));
+          return const SizedBox.shrink();
         }
 
         return Column(

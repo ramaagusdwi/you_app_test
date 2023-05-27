@@ -1,12 +1,17 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_you_app/core/constant/image_constant.dart';
-import 'package:flutter_you_app/domain/usecase/login.dart';
+import 'package:flutter_you_app/domain/entities/about_data.dart';
+import 'package:flutter_you_app/presentation/bloc/about_bloc.dart';
 import 'package:flutter_you_app/presentation/pages/login_page.dart';
-import 'package:flutter_you_app/shared_view/back_button_chevron.dart';
-import 'package:flutter_you_app/resource/theme.dart';
 import 'package:flutter_you_app/presentation/widgets/profile/about.dart';
+import 'package:flutter_you_app/presentation/widgets/profile/cover.dart';
 import 'package:flutter_you_app/presentation/widgets/profile/interest.dart';
+import 'package:flutter_you_app/resource/theme.dart';
+import 'package:flutter_you_app/shared_view/back_button_chevron.dart';
 
 class ProfilePageArgument {
   String username;
@@ -49,84 +54,13 @@ class _ProfilePageState extends State<ProfilePage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const SizedBox(height: 40), 
+                  const SizedBox(height: 40),
                   _Header(username: widget.username),
                   const SizedBox(height: 28),
-                  //before add photo
-                  isUpdateData
-                      ? Flexible(
-                          child: Container(
-                            height: 190,
-                            width: double.infinity,
-                            decoration: const BoxDecoration(
-                              image: DecorationImage(
-                                fit: BoxFit.fitWidth,
-                                image: AssetImage('assets/men.jpg'),
-                              ),
-                              borderRadius: BorderRadius.all(Radius.circular(16.0)),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 14),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  const Spacer(),
-                                  Text(
-                                    '@johndoe123, 28',
-                                    style: whiteTextStyle.copyWith(
-                                      fontSize: 16,
-                                      fontWeight: bold,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 6),
-                                  Text(
-                                    'Male',
-                                    style: whiteTextStyle.copyWith(
-                                      fontSize: 13,
-                                      fontWeight: medium,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 12),
-                                  chipList(),
-                                ],
-                              ),
-                            ),
-                          ),
-                        )
-                      : Flexible(
-                          child: Container(
-                            height: 190,
-                            padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 17),
-                            decoration: const BoxDecoration(
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(16),
-                                ),
-                                color: grey),
-                            child: Column(
-                              children: [
-                                const Spacer(),
-                                Align(
-                                  alignment: Alignment.bottomLeft,
-                                  child: Text(
-                                    widget.username,
-                                    style: whiteTextStyle.copyWith(
-                                      fontSize: 16,
-                                      fontWeight: bold,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
+                  //cover photo profile user
+                  Flexible(child: CoverProfile(isUpdate: isUpdateData, username: widget.username)),
                   const SizedBox(height: 24),
-                  Flexible(child: About(
-                    updateDataCallback: (value) {
-                      setState(() {
-                        isUpdateData = value;
-                      });
-                    },
-                  )),
+                  const About(),
                   const SizedBox(height: 24),
                   const Flexible(child: Interest()),
                   // Interest(),
@@ -139,7 +73,6 @@ class _ProfilePageState extends State<ProfilePage> {
       ),
     );
   }
-
 
   Widget back() {
     return InkWell(
@@ -161,65 +94,6 @@ class _ProfilePageState extends State<ProfilePage> {
       ),
     );
   }
-
-  Map<String, String> zodiac = {
-    'aries': ImageConstant.aries,
-    'taurus': ImageConstant.taurus,
-    'gemini': ImageConstant.gemini,
-    'cancer': ImageConstant.cancer,
-    'leo': ImageConstant.leo,
-    'virgo': ImageConstant.virgo,
-    'libra': ImageConstant.libra,
-    'scorpio': ImageConstant.scorpio,
-    'sagitarius': ImageConstant.sagitarius,
-    'capricorn': ImageConstant.capricorn,
-    'aquarius': ImageConstant.aquarius,
-    'pisces': ImageConstant.pisces,
-    'rat': ImageConstant.rat,
-    'ox': ImageConstant.ox,
-    'tiger': ImageConstant.tiger,
-    'rabbit': ImageConstant.rabbit,
-    'dragon': ImageConstant.dragon,
-    'snake': ImageConstant.snake,
-    'horse': ImageConstant.horse,
-    'goat': ImageConstant.goat,
-    'monkey': ImageConstant.monkey,
-    'rooster': ImageConstant.rooster,
-    'dog': ImageConstant.dog,
-    'pig': ImageConstant.pig,
-  };
-
-  Widget _buildChip(String label, Color color) {
-    String labelLowerCase = label.toLowerCase();
-    String assetZodiac = zodiac[labelLowerCase]!;
-    return Chip(
-      labelPadding: const EdgeInsets.all(2.0),
-      avatar: Image.asset(assetZodiac),
-      label: Padding(
-        padding: const EdgeInsets.only(left: 10),
-        child: Text(
-          label,
-          style: const TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-      ),
-      backgroundColor: color,
-      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 18),
-    );
-  }
-
-  chipList() {
-    return Wrap(
-      spacing: 15.0,
-      runSpacing: 6.0,
-      children: <Widget>[
-        _buildChip('sagitarius', Color(0xFF222421)),
-        _buildChip('rooster', const Color(0xFF222421)),
-      ],
-    );
-  }
 }
 
 class _Header extends StatefulWidget {
@@ -238,16 +112,28 @@ class _HeaderState extends State<_Header> {
 
   @override
   Widget build(BuildContext context) {
+    final status = context.watch<AboutBloc>().state.status;
+    final username = context.watch<AboutBloc>().state.aboutData.displayName;
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         back(),
-        Text(
+        if (status == AboutStatus.initial) ...[
+          Text(
           widget.username,
           textAlign: TextAlign.center,
           style: whiteTextStyle.copyWith(fontSize: 14, fontWeight: semiBold),
         ),
+        ],
+        if (status == AboutStatus.doneEdit) ...[
+          Text(
+            username ?? widget.username,
+            textAlign: TextAlign.center,
+            style: whiteTextStyle.copyWith(fontSize: 14, fontWeight: semiBold),
+          ),
+        ],
+
         PopupMenuButton<SampleItem>(
           color: Colors.white,
           initialValue: selectedMenu,

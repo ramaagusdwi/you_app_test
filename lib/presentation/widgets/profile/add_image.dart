@@ -2,7 +2,10 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_you_app/domain/entities/about_data.dart';
+import 'package:flutter_you_app/presentation/bloc/about_bloc.dart';
 import 'package:flutter_you_app/resource/theme.dart';
 import 'package:flutter_you_app/core/utils/take_photo_bottomsheet.dart';
 
@@ -27,6 +30,14 @@ class _AddImageState extends State<AddImage> {
             setState(() {
               _pathFile = filePath[0];
             });
+            var data = AboutData();
+            context.read<AboutBloc>().add(
+                  AddAboutData(
+                    aboutData: data.copyWith(
+                      pathImage: _pathFile,
+                    ),
+                  ),
+                );
           }
         });
       },
@@ -62,8 +73,7 @@ class _AddImageState extends State<AddImage> {
                       Icons.add,
                       color: Colors.white,
                     ),
-                  )
-                ),
+                  )),
           const SizedBox(width: 15),
           Text(
             'Add Image',

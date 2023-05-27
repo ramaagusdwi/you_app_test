@@ -5,11 +5,21 @@ import 'dart:io';
 import 'package:app_settings/app_settings.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:intl/intl.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 enum Severity { Info, Success, Error }
 
 class Utils {
+  static String DISPLAY_DATE_FORMAT3 = "dd/MM/yyyy";
+
+  static String dateToString(DateTime time, String format) {
+    if (time == null) return "";
+    var formatter = DateFormat(format);
+    String formatted = formatter.format(time);
+    return formatted;
+  }
+  
   static createSnackBar(String message, {Severity type = Severity.Info, Duration? duration}) {
     return SnackBar(
       backgroundColor: type == Severity.Info
@@ -51,8 +61,8 @@ class Utils {
   static Future<String?> pickMedia({bool isCamera = true}) async {
     final ImagePicker picker = ImagePicker();
     final XFile? image = isCamera
-        ? await picker.pickImage(source: ImageSource.camera, imageQuality: 1)
-        : await picker.pickImage(source: ImageSource.gallery, imageQuality: 1);
+        ? await picker.pickImage(source: ImageSource.camera, imageQuality: 90)
+        : await picker.pickImage(source: ImageSource.gallery, imageQuality: 90);
     return image?.path;
   }
 
