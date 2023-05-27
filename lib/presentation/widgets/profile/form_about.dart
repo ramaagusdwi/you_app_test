@@ -265,10 +265,7 @@ class _FormAboutState extends State<FormAbout> {
         labelStyle: whiteOpacity40TextStyle,
         hintText: displayName ?? 'Enter name',
         hintStyle: whiteOpacity40TextStyle,
-        // onChanged: (value) {
-        //   AboutData? data = AboutData(displayName: value);
-        //   context.read<AboutBloc>().add(AddAboutData(aboutData: data));
-        // },
+       
         onSubmitted: (value) {
           AboutData? data = AboutData(displayName: value);
           context.read<AboutBloc>().add(AddAboutData(aboutData: data));
@@ -301,20 +298,17 @@ class _FormAboutState extends State<FormAbout> {
         return null;
       },
       onTap: () async {
-        // _handleDatePicker(context);
-        // Map result = await _selectDate();
-        // AboutData? data = AboutData(
-        //     birthday: result['birthday'], zodiac: result['zodiac'], horoscope: result['horoscope']);
+     
         DatePickerHelper.show(context, (dateTime) {
           final int year = dateTime.year;
 
           var formattedDate = DateFormat('dd MM yyyy').format(dateTime);
-          // setState(() {
+        
           labelBirthday = formattedDate;
           labelZodiac = getZodiacSign(dateTime);
           labelHoroscope = calculateChineseZodiac(year);
           fetchHoroscopeInProgress = false;
-          // });
+        
           AboutData? data =
               AboutData(birthday: dateTime, zodiac: labelZodiac, horoscope: labelHoroscope);
 
@@ -324,45 +318,5 @@ class _FormAboutState extends State<FormAbout> {
     );
   }
 
-  // Future<Map<String, dynamic>> _selectDate() async {
-  //   Map<String, dynamic> selectedDateData = {};
-  //   final DateTime? selected = await showDatePicker(
-  //     context: context,
-  //     initialDate: DateTime.now(),
-  //     firstDate: DateTime(1990),
-  //     lastDate: DateTime(2025),
-  //     builder: (context, child) {
-  //       return Theme(
-  //         data: Theme.of(context).copyWith(
-  //           colorScheme: const ColorScheme.dark(
-  //             background: backgroundColor,
-  //             primary: backgroundColor3, // <-- SEE HERE
-  //             onPrimary: white, // <-- SEE HERE
-  //             onSurface: celestialBlue, // <-- SEE HERE
-  //           ),
-  //           textButtonTheme: TextButtonThemeData(
-  //             style: TextButton.styleFrom(primary: blueDowny // button text color
-  //                 ),
-  //           ),
-  //         ),
-  //         child: child!,
-  //       );
-  //     },
-  //   );
-
-  //   final int year = selected!.year;
-
-  //   var formattedDate = DateFormat('dd MM yyyy').format(selected);
-  //   // setState(() {
-  //   labelBirthday = formattedDate;
-  //   labelZodiac = getZodiacSign(selected);
-  //   labelHoroscope = calculateChineseZodiac(year);
-  //   fetchHoroscopeInProgress = false;
-  //   // });
-  //   AboutData? data = AboutData(birthday: selected, zodiac: labelZodiac, horoscope: labelHoroscope);
-  //   selectedDateData['birthday'] = labelBirthday;
-  //   selectedDateData['zodiac'] = labelZodiac;
-  //   selectedDateData['horoscope'] = labelHoroscope;
-  //   return selectedDateData;
-  // }
+ 
 }
