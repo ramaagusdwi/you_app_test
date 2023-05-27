@@ -31,7 +31,7 @@ class LoginForm extends StatelessWidget {
         }
         if (state.status.isSuccess) {
           debugPrint('loginSuccess');
-          // Navigator.of(context).pushReplacementNamed(Routes.profile);
+         
           Navigator.pushReplacementNamed(
             context,
             Routes.profile,
