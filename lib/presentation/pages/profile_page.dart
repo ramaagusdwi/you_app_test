@@ -119,7 +119,7 @@ class _HeaderState extends State<_Header> {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         back(),
-        if (status == AboutStatus.initial) ...[
+        if (status == AboutStatus.initial || status == AboutStatus.isEditing) ...[
           Text(
           widget.username,
           textAlign: TextAlign.center,
