@@ -27,7 +27,7 @@ part 'about_state.dart';
 class AboutBloc extends Bloc<AboutEvent, AboutState> {
   AboutBloc() : super(AboutState.init()) {
     ///[AddAboutData] to hold value on properties AboutData
-    on<AddAboutData>((AddAboutData event, Emitter<AboutState> emit) async {
+    on<AboutAddData>((AboutAddData event, Emitter<AboutState> emit) async {
       // handle incoming `AddAboutData` event
       AboutData? data = event.aboutData.copyWith(
         displayName: event.aboutData.displayName ?? state.aboutData.displayName,

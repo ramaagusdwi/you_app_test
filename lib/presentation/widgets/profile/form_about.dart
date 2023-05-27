@@ -70,6 +70,7 @@ class _FormAboutState extends State<FormAbout> {
             ),
             InkWell(
               onTap: () {
+                context.read<AboutBloc>().add(AboutAddData());
                 context.read<AboutBloc>().add(AboutSavePressed());
               },
               child: GradientText(
@@ -129,7 +130,7 @@ class _FormAboutState extends State<FormAbout> {
       onChanged: (value) {},
       onSubmitted: (value) {
         AboutData? data = AboutData(weight: int.parse(value!));
-        context.read<AboutBloc>().add(AddAboutData(aboutData: data));
+        context.read<AboutBloc>().add(AboutAddData(aboutData: data));
       },
       textInputType: TextInputType.number,
       textInputFormatters: <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly], // Onl
@@ -153,7 +154,7 @@ class _FormAboutState extends State<FormAbout> {
       onChanged: (value) {},
       onSubmitted: (value) {
         AboutData? data = AboutData(height: int.parse(value!));
-        context.read<AboutBloc>().add(AddAboutData(aboutData: data));
+        context.read<AboutBloc>().add(AboutAddData(aboutData: data));
       },
       validator: (value) {
         if (value == null || value.isEmpty) {
@@ -254,7 +255,7 @@ class _FormAboutState extends State<FormAbout> {
               log('cekName: ${val.name}');
               log('cekValue: ${val.value}');
               AboutData? data = AboutData(gender: val.name);
-              context.read<AboutBloc>().add(AddAboutData(aboutData: data));
+              context.read<AboutBloc>().add(AboutAddData(aboutData: data));
             },
           ),
         ),
@@ -275,7 +276,7 @@ class _FormAboutState extends State<FormAbout> {
         hintStyle: displayName == null ? whiteOpacity40TextStyle : whiteTextStyle,
         onSubmitted: (value) {
           AboutData? data = AboutData(displayName: value);
-          context.read<AboutBloc>().add(AddAboutData(aboutData: data));
+          context.read<AboutBloc>().add(AboutAddData(aboutData: data));
         },
         validator: (value) {
           if (value == null || value.isEmpty) {
@@ -322,7 +323,7 @@ class _FormAboutState extends State<FormAbout> {
           AboutData? data = AboutData(
               birthday: dateTime, zodiac: labelZodiacDefault, horoscope: labelHoroscopeDefault);
 
-          context.read<AboutBloc>().add(AddAboutData(aboutData: data));
+          context.read<AboutBloc>().add(AboutAddData(aboutData: data));
         });
       },
     );

@@ -32,7 +32,7 @@ class _AddImageState extends State<AddImage> {
             });
             var data = AboutData();
             context.read<AboutBloc>().add(
-                  AddAboutData(
+                  AboutAddData(
                     aboutData: data.copyWith(
                       pathImage: _pathFile,
                     ),

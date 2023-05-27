@@ -3,9 +3,9 @@ part of 'about_bloc.dart';
 
 class AboutEvent {}
 
-class AddAboutData extends AboutEvent {
+class AboutAddData extends AboutEvent {
   final AboutData aboutData;
-  AddAboutData({
+  AboutAddData({
     required this.aboutData,
   });
 }
