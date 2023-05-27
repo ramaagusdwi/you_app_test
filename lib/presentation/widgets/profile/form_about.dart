@@ -70,7 +70,24 @@ class _FormAboutState extends State<FormAbout> {
             ),
             InkWell(
               onTap: () {
-                context.read<AboutBloc>().add(AboutAddData());
+                String? displayName = _displayNameController.text;
+                String? gender = _genderController.dropDownValue?.name ?? '';
+                DateTime? birthday = context.read<AboutBloc>().state.aboutData.birthday;
+                String? horoscopeValue = context.read<AboutBloc>().state.aboutData.horoscope;
+                String? zodiac = context.read<AboutBloc>().state.aboutData.zodiac;
+                int? height = int.parse(_heightController.text);
+                int? weight = int.parse(_weightController.text);
+                String? imagePath = context.read<AboutBloc>().state.aboutData.pathImage;
+                var data = AboutData(
+                    displayName: displayName,
+                    birthday: birthday,
+                    gender: gender,
+                    horoscope: horoscopeValue,
+                    height: height,
+                    weight: weight,
+                    zodiac: zodiac,
+                    pathImage: imagePath);
+                context.read<AboutBloc>().add(AboutAddData(aboutData: data));
                 context.read<AboutBloc>().add(AboutSavePressed());
               },
               child: GradientText(
