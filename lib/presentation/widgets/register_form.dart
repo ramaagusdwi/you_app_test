@@ -108,7 +108,7 @@ class RegisterForm extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            'No account? ',
+            'Have account? ',
             style: whiteTextStyle.copyWith(
               fontSize: 13,
               fontWeight: medium,
@@ -116,7 +116,7 @@ class RegisterForm extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              Navigator.of(context).pushReplacementNamed(Routes.register);
+              Navigator.of(context).pushReplacementNamed(Routes.login);
             },
             child: GradientText(
               'Register here',
