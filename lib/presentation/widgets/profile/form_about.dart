@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_you_app/core/utils/date_picker.dart';
+import 'package:flutter_you_app/core/utils/utils.dart';
 import 'package:flutter_you_app/core/utils/zodiac_sign.dart';
 import 'package:flutter_you_app/domain/entities/about_data.dart';
 import 'package:flutter_you_app/presentation/bloc/about_bloc.dart';
@@ -32,9 +33,9 @@ class _FormAboutState extends State<FormAbout> {
   late TextEditingController _heightController;
   late TextEditingController _weightController;
 
-  String labelBirthday = 'DD MM YYYY';
-  String labelZodiac = '--';
-  String labelHoroscope = '--';
+  String labelBirthdayDefault = 'DD MM YYYY';
+  String labelZodiacDefault = '--';
+  String labelHoroscopeDefault = '--';
 
   bool fetchHoroscopeInProgress = false;
 
@@ -101,15 +102,17 @@ class _FormAboutState extends State<FormAbout> {
   }
 
   BaseInputLabel _weightInput() {
+    int? weight = context.watch<AboutBloc>().state.aboutData.weight;
+    String weightLabel = weight == null ? 'Add weight' : weight.toString();
     return BaseInputLabel(
       labelLeftText: 'Weight:',
       labelLeftStyle: whiteOpacity40TextStyle.copyWith(fontSize: 13, fontWeight: bold),
       enabled: true,
       textAlign: TextAlign.left,
       controller: _weightController,
-      labelText: 'Add weight',
+      labelText: weightLabel,
       labelStyle: whiteOpacity40TextStyle,
-      hintText: 'Add weight',
+      hintText: weightLabel,
       hintStyle: whiteOpacity40TextStyle,
       suffixIcon: Text('Kg',
           textAlign: TextAlign.center,
@@ -134,15 +137,18 @@ class _FormAboutState extends State<FormAbout> {
   }
 
   BaseInputLabel _heightInput() {
+    int? height = context.watch<AboutBloc>().state.aboutData.height;
+    String heightLabel = height == null ? 'Add height' : height.toString();
+    String heightHint = 'Add height';
     return BaseInputLabel(
       labelLeftText: 'Height:',
       labelLeftStyle: whiteOpacity40TextStyle.copyWith(fontSize: 13, fontWeight: bold),
       enabled: true,
       textAlign: TextAlign.left,
       controller: _heightController,
-      labelText: 'Add height',
+      labelText: heightLabel,
       labelStyle: whiteOpacity40TextStyle,
-      hintText: 'Add height',
+      hintText: heightHint,
       hintStyle: whiteOpacity40TextStyle,
       onChanged: (value) {},
       onSubmitted: (value) {
@@ -169,14 +175,15 @@ class _FormAboutState extends State<FormAbout> {
   }
 
   BaseInputLabel _horoscopeInput() {
+    String? horoscope = context.watch<AboutBloc>().state.aboutData.horoscope;
     return BaseInputLabel(
       labelLeftText: 'Horoscope:',
       labelLeftStyle: whiteOpacity40TextStyle.copyWith(fontSize: 13, fontWeight: bold),
       enabled: false,
       textAlign: TextAlign.left,
-      labelText: labelHoroscope,
+      labelText: horoscope ?? labelHoroscopeDefault,
       labelStyle: whiteOpacity40TextStyle,
-      hintText: labelHoroscope,
+      hintText: horoscope ?? labelHoroscopeDefault,
       hintStyle: whiteOpacity40TextStyle,
       validator: (value) {
         if (value == null || value.isEmpty) {
@@ -188,14 +195,15 @@ class _FormAboutState extends State<FormAbout> {
   }
 
   BaseInputLabel _zodiacInput() {
+    String? zodiac = context.watch<AboutBloc>().state.aboutData.zodiac;
     return BaseInputLabel(
       labelLeftText: 'Zodiac:',
       labelLeftStyle: whiteOpacity40TextStyle.copyWith(fontSize: 13, fontWeight: bold),
       enabled: false,
       textAlign: TextAlign.left,
-      labelText: labelZodiac,
+      labelText: zodiac ?? labelZodiacDefault,
       labelStyle: whiteOpacity40TextStyle,
-      hintText: labelZodiac,
+      hintText: zodiac ?? labelZodiacDefault,
       hintStyle: whiteOpacity40TextStyle,
       validator: (value) {
         if (value == null || value.isEmpty) {
@@ -265,7 +273,6 @@ class _FormAboutState extends State<FormAbout> {
         labelStyle: whiteOpacity40TextStyle,
         hintText: displayName ?? 'Enter name',
         hintStyle: whiteOpacity40TextStyle,
-       
         onSubmitted: (value) {
           AboutData? data = AboutData(displayName: value);
           context.read<AboutBloc>().add(AddAboutData(aboutData: data));
@@ -279,6 +286,8 @@ class _FormAboutState extends State<FormAbout> {
   }
 
   BaseInputLabel _birthdayInput(BuildContext context) {
+    DateTime? birthday = context.watch<AboutBloc>().state.aboutData.birthday;
+
     return BaseInputLabel(
       enabled: false,
       labelLeftText: 'Birthday:',
@@ -287,9 +296,11 @@ class _FormAboutState extends State<FormAbout> {
         fontWeight: bold,
       ),
       textAlign: TextAlign.left,
-      labelText: labelBirthday,
+      labelText: birthday == null
+          ? labelBirthdayDefault
+          : Utils.dateToString(birthday, Utils.DISPLAY_DATE_FORMAT3),
       labelStyle: whiteTextStyle,
-      hintText: labelBirthday,
+      hintText: labelBirthdayDefault,
       hintStyle: whiteOpacity40TextStyle,
       validator: (value) {
         if (value == null || value.isEmpty) {
@@ -298,25 +309,22 @@ class _FormAboutState extends State<FormAbout> {
         return null;
       },
       onTap: () async {
-     
         DatePickerHelper.show(context, (dateTime) {
           final int year = dateTime.year;
 
           var formattedDate = DateFormat('dd MM yyyy').format(dateTime);
-        
-          labelBirthday = formattedDate;
-          labelZodiac = getZodiacSign(dateTime);
-          labelHoroscope = calculateChineseZodiac(year);
+
+          labelBirthdayDefault = formattedDate;
+          labelZodiacDefault = getZodiacSign(dateTime);
+          labelHoroscopeDefault = calculateChineseZodiac(year);
           fetchHoroscopeInProgress = false;
-        
-          AboutData? data =
-              AboutData(birthday: dateTime, zodiac: labelZodiac, horoscope: labelHoroscope);
+
+          AboutData? data = AboutData(
+              birthday: dateTime, zodiac: labelZodiacDefault, horoscope: labelHoroscopeDefault);
 
           context.read<AboutBloc>().add(AddAboutData(aboutData: data));
         });
       },
     );
   }
-
- 
 }
