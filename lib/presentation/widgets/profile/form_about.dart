@@ -102,8 +102,8 @@ class _FormAboutState extends State<FormAbout> {
   }
 
   BaseInputLabel _weightInput() {
-    int? weight = context.watch<AboutBloc>().state.aboutData.weight;
-    String weightLabel = weight == null ? 'Add weight' : weight.toString();
+    int? weightValue = context.watch<AboutBloc>().state.aboutData.weight;
+    String weightLabel = weightValue == null ? 'Add weight' : weightValue.toString();
     return BaseInputLabel(
       labelLeftText: 'Weight:',
       labelLeftStyle: whiteOpacity40TextStyle.copyWith(fontSize: 13, fontWeight: bold),
@@ -111,7 +111,7 @@ class _FormAboutState extends State<FormAbout> {
       textAlign: TextAlign.left,
       controller: _weightController,
       labelText: weightLabel,
-      labelStyle: whiteOpacity40TextStyle,
+      labelStyle: weightValue == null ? whiteOpacity40TextStyle : whiteTextStyle,
       hintText: weightLabel,
       hintStyle: whiteOpacity40TextStyle,
       suffixIcon: Text('Kg',
@@ -137,8 +137,8 @@ class _FormAboutState extends State<FormAbout> {
   }
 
   BaseInputLabel _heightInput() {
-    int? height = context.watch<AboutBloc>().state.aboutData.height;
-    String heightLabel = height == null ? 'Add height' : height.toString();
+    int? heightValue = context.watch<AboutBloc>().state.aboutData.height;
+    String heightLabel = heightValue == null ? 'Add height' : heightValue.toString();
     String heightHint = 'Add height';
     return BaseInputLabel(
       labelLeftText: 'Height:',
@@ -147,9 +147,9 @@ class _FormAboutState extends State<FormAbout> {
       textAlign: TextAlign.left,
       controller: _heightController,
       labelText: heightLabel,
-      labelStyle: whiteOpacity40TextStyle,
+      labelStyle: heightValue == null ? whiteOpacity40TextStyle : whiteTextStyle,
       hintText: heightHint,
-      hintStyle: whiteOpacity40TextStyle,
+      hintStyle: heightValue == null ? whiteOpacity40TextStyle : whiteTextStyle,
       onChanged: (value) {},
       onSubmitted: (value) {
         AboutData? data = AboutData(height: int.parse(value!));
@@ -175,16 +175,16 @@ class _FormAboutState extends State<FormAbout> {
   }
 
   BaseInputLabel _horoscopeInput() {
-    String? horoscope = context.watch<AboutBloc>().state.aboutData.horoscope;
+    String? horoscopeValue = context.watch<AboutBloc>().state.aboutData.horoscope;
     return BaseInputLabel(
       labelLeftText: 'Horoscope:',
       labelLeftStyle: whiteOpacity40TextStyle.copyWith(fontSize: 13, fontWeight: bold),
       enabled: false,
       textAlign: TextAlign.left,
-      labelText: horoscope ?? labelHoroscopeDefault,
-      labelStyle: whiteOpacity40TextStyle,
-      hintText: horoscope ?? labelHoroscopeDefault,
-      hintStyle: whiteOpacity40TextStyle,
+      labelText: horoscopeValue ?? labelHoroscopeDefault,
+      labelStyle: horoscopeValue == null ? whiteOpacity40TextStyle : whiteTextStyle,
+      hintText: horoscopeValue ?? labelHoroscopeDefault,
+      hintStyle: horoscopeValue == null ? whiteOpacity40TextStyle : whiteTextStyle,
       validator: (value) {
         if (value == null || value.isEmpty) {
           return 'Please select birthday first then auto detect your horoscope';
@@ -195,16 +195,16 @@ class _FormAboutState extends State<FormAbout> {
   }
 
   BaseInputLabel _zodiacInput() {
-    String? zodiac = context.watch<AboutBloc>().state.aboutData.zodiac;
+    String? zodiacValue = context.watch<AboutBloc>().state.aboutData.zodiac;
     return BaseInputLabel(
       labelLeftText: 'Zodiac:',
       labelLeftStyle: whiteOpacity40TextStyle.copyWith(fontSize: 13, fontWeight: bold),
       enabled: false,
       textAlign: TextAlign.left,
-      labelText: zodiac ?? labelZodiacDefault,
-      labelStyle: whiteOpacity40TextStyle,
-      hintText: zodiac ?? labelZodiacDefault,
-      hintStyle: whiteOpacity40TextStyle,
+      labelText: zodiacValue ?? labelZodiacDefault,
+      labelStyle: zodiacValue == null ? whiteOpacity40TextStyle : whiteTextStyle,
+      hintText: zodiacValue ?? labelZodiacDefault,
+      hintStyle: zodiacValue == null ? whiteOpacity40TextStyle : whiteTextStyle,
       validator: (value) {
         if (value == null || value.isEmpty) {
           return 'Please select birthday first then auto detect your zodiac';
@@ -270,9 +270,9 @@ class _FormAboutState extends State<FormAbout> {
         textAlign: TextAlign.left,
         controller: _displayNameController,
         labelText: displayName ?? 'Enter name',
-        labelStyle: whiteOpacity40TextStyle,
+        labelStyle: displayName == null ? whiteOpacity40TextStyle : whiteTextStyle,
         hintText: displayName ?? 'Enter name',
-        hintStyle: whiteOpacity40TextStyle,
+        hintStyle: displayName == null ? whiteOpacity40TextStyle : whiteTextStyle,
         onSubmitted: (value) {
           AboutData? data = AboutData(displayName: value);
           context.read<AboutBloc>().add(AddAboutData(aboutData: data));
