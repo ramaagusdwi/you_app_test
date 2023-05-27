@@ -30,7 +30,7 @@ class LoginForm extends StatelessWidget {
             );
         }
         if (state.status.isSuccess) {
-          debugPrint('loginSuccess');
+
          
           Navigator.pushReplacementNamed(
             context,
