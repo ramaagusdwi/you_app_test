@@ -43,18 +43,25 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   Future<void> _logInWithEmailAndPassword(LoginPressed event, emit) async {
     if (!state.isValid) return;
     emit(state.copyWith(status: FormzSubmissionStatus.inProgress));
-    LoginEntity entity = LoginEntity(email: state.email.value, password: state.password.value);
-    final result = await login.execute(entity);
 
-    result.fold((error) {  
-      emit(
-        state.copyWith(status: FormzSubmissionStatus.failure, errorMessage: error.message),
-      );
-    }, (data) {      
-      emit(state.copyWith(
+    final result = await login.execute(event.loginEntity);
+
+    // result.fold((error) {
+    //   emit(
+    //     state.copyWith(status: FormzSubmissionStatus.failure, errorMessage: error.message),
+    //   );
+    // }, (data) {
+    //   emit(state.copyWith(
+    //     status: FormzSubmissionStatus.success,
+    //     errorMessage: data,
+    //   ));
+    // });
+    emit(result.fold((error) {
+      return state.copyWith(status: FormzSubmissionStatus.failure, errorMessage: error.message);
+    }, (data) {
+      return state.copyWith(
         status: FormzSubmissionStatus.success,
-        errorMessage: data,
-      ));
-    });
+      );
+    }));
   }
 }

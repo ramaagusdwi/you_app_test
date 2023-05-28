@@ -48,12 +48,11 @@ class MyApp extends StatelessWidget {
                 primaryColor: Colors.black,
               ),
               onGenerateRoute: generateRoute,
-              home: ProfilePage(username: 'test'),
-              // home: const LoginPage(),
+              // home: ProfilePage(username: 'test'),
+              home: const LoginPage(),
             ),
           );
         });
 
-    // SEMANGAT TERUS, RAM !!!
   }
 }

@@ -7,7 +7,7 @@ class Login {
   final AuthRepository _repository;
   Login(this._repository);
   Future<Either<AppError, String>> execute(LoginEntity entity) async {
-    return _repository.login(
+    return await _repository.login(
       entity,
     );
   }

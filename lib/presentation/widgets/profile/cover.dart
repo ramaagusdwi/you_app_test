@@ -45,7 +45,7 @@ class CoverProfile extends StatelessWidget {
                 //to do, show age obtain from input text field birthday
              
                 Text(
-                  state.aboutData.displayName!,
+                  state.aboutData.displayName ?? '',
                     style: whiteTextStyle.copyWith(
                       fontSize: 16,
                       fontWeight: bold,

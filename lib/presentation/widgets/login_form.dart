@@ -1,7 +1,10 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_you_app/core/route/routes.dart';
 import 'package:flutter_you_app/domain/entities/about_data.dart';
+import 'package:flutter_you_app/domain/entities/login_entity.dart';
 import 'package:flutter_you_app/presentation/bloc/about_bloc.dart';
 import 'package:flutter_you_app/presentation/bloc/login_bloc.dart';
 import 'package:flutter_you_app/presentation/pages/profile_page.dart';
@@ -243,7 +246,10 @@ class _LoginButton extends StatelessWidget {
                     onPressed: state.isValid
                         ? () {
                             FocusManager.instance.primaryFocus?.unfocus();
-                            context.read<LoginBloc>().add(LoginPressed());
+                            log('email: ${state.email.value}, passwd: ${state.password.value}');
+                            final loginEntity = LoginEntity(
+                                email: state.email.value, password: state.password.value);
+                            context.read<LoginBloc>().add(LoginPressed(loginEntity));
                           }
                         : null,
                   ),

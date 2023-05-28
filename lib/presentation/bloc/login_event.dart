@@ -12,7 +12,7 @@ class LoginPasswordChanged extends LoginEvent {
   LoginPasswordChanged(this.password);
 }
 
-
 class LoginPressed extends LoginEvent {
-  LoginPressed();
+  LoginEntity loginEntity;
+  LoginPressed(this.loginEntity);
 }
