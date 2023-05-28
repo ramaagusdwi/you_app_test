@@ -26,71 +26,75 @@ class _InterestInputPageState extends State<InterestInputPage> {
   Widget build(BuildContext context) {
     final TextEditingController interestController = TextEditingController();
 
-    return Scaffold(
-      backgroundColor: backgroundColor3,
-      appBar: PreferredSize(
-          preferredSize: Size.fromHeight(0.0), // here the desired height
-          child: AppBar(
-            systemOverlayStyle: SystemUiOverlayStyle.dark,
-            backgroundColor: backgroundColor,
-          )),
-      resizeToAvoidBottomInset: false,
-      body: SafeArea(
-        child: Container(
-          decoration: BoxDecoration(
-            gradient: RadialGradient(
-              center: const Alignment(1.30, -0.8), // near the top right
-              radius: 1.0,
-              stops: <double>[0.1, 0.8, 10.0],
-              colors: [
-                backgroundColor,
-                backgroundColor2,
-                backgroundColor3.withOpacity(0),
-              ],
-            ),
-          ),
+    return WillPopScope(
+      onWillPop: () async {
+        context.read<InterestBloc>().add(InterestRemovedAllTemp());
+        return true;
+      },
+      child: Scaffold(
+        backgroundColor: backgroundColor3,
+        appBar: PreferredSize(
+            preferredSize: Size.fromHeight(0.0), // here the desired height
+            child: AppBar(
+              systemOverlayStyle: SystemUiOverlayStyle.dark,
+              backgroundColor: backgroundColor,
+            )),
+        resizeToAvoidBottomInset: false,
+        body: SafeArea(
           child: Container(
-            margin: EdgeInsets.symmetric(horizontal: 18.w),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(height: 49.w),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    back(context),
-                    save(context, interestController),
-                  ],
-                ),
-                SizedBox(height: 73.w),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 15.w),
-                  child: GradientText('Tell everyone about yourself',
-                      style: TextStyle(
-                        fontSize: 14.0,
-                        fontWeight: bold,
-                      ),
-                      colors: goldensColor),
-                ),
-                SizedBox(height: 12.w),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 15.w),
-                  child: Text(
-                    'What interest you?',
-                    style: whiteTextStyle.copyWith(fontSize: 20, fontWeight: bold),
+            decoration: BoxDecoration(
+              gradient: RadialGradient(
+                center: const Alignment(1.30, -0.8), // near the top right
+                radius: 1.0,
+                stops: <double>[0.1, 0.8, 10.0],
+                colors: [
+                  backgroundColor,
+                  backgroundColor2,
+                  backgroundColor3.withOpacity(0),
+                ],
+              ),
+            ),
+            child: Container(
+              margin: EdgeInsets.symmetric(horizontal: 18.w),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: 49.w),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      back(context),
+                      save(context, interestController),
+                    ],
                   ),
-                ),
-                SizedBox(height: 35.w),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 4.w),
-                  child: _interestInputWidget(interestController, context),
-                ),
-                SizedBox(height: 20.w),
-
-                const InterestListInput(),
-              
-              ],
+                  SizedBox(height: 73.w),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 15.w),
+                    child: GradientText('Tell everyone about yourself',
+                        style: TextStyle(
+                          fontSize: 14.0,
+                          fontWeight: bold,
+                        ),
+                        colors: goldensColor),
+                  ),
+                  SizedBox(height: 12.w),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 15.w),
+                    child: Text(
+                      'What interest you?',
+                      style: whiteTextStyle.copyWith(fontSize: 20, fontWeight: bold),
+                    ),
+                  ),
+                  SizedBox(height: 35.w),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 4.w),
+                    child: _interestInputWidget(interestController, context),
+                  ),
+                  SizedBox(height: 20.w),
+                  const InterestListInput(),
+                ],
+              ),
             ),
           ),
         ),
@@ -115,7 +119,6 @@ class _InterestInputPageState extends State<InterestInputPage> {
         onSubmitted: (value) {
           log('submitted');
           context.read<InterestBloc>().add(InterestTextFieldSubmited(value!));
-          Navigator.pop(context);
         },
       ),
     );
@@ -130,8 +133,9 @@ class _InterestInputPageState extends State<InterestInputPage> {
     return InkWell(
       onTap: () {
         // context.read<InterestBloc>().add(InterestFetched());
-        String value = controller.text.trim();
-        context.read<InterestBloc>().add(InterestTextFieldSubmited(value));
+        // String value = controller.text.trim();
+        // context.read<InterestBloc>().add(InterestTextFieldSubmited(value));
+        context.read<InterestBloc>().add(InterestSaved());
         Navigator.pop(context);
       },
       child: GradientText(

@@ -30,6 +30,7 @@ class InterestBloc extends Bloc<InterestEvent, InterestState> {
       // emit(state.copyWith(interests: ));
       emit(
         state.copyWith(
+            status: InterestStatus.initial,
             interestsTemp: [...state.interestsTemp]
               ..removeWhere((element) => element == event.interest),
             interests: [...state.interests]..removeWhere((element) => element == event.interest)),

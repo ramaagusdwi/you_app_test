@@ -67,10 +67,13 @@ class InterestListInput extends StatelessWidget {
                           context.read<InterestBloc>().add(InterestRemoved(item));
                           // state.removeWhere((element) => element == item);
                         },
-                        child: Icon(
-                          Icons.close,
-                          size: 14.w,
-                          color: white,
+                        child: Padding(
+                          padding: const EdgeInsets.all(4.0),
+                          child: Icon(
+                            Icons.close,
+                            size: 16.w,
+                            color: white,
+                          ),
                         ),
                       )
                     ],
