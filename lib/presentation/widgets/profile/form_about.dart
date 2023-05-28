@@ -15,6 +15,7 @@ import 'package:flutter_you_app/resource/theme.dart';
 import 'package:flutter_you_app/shared_view/custom_text_field_with_left_label.dart';
 import 'package:intl/intl.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
+import 'package:flutter_you_app/extension/string_ext.dart';
 
 ///class [FormAbout] show form consist  text field display name gender, birthday, horoscope. zodiac, height, and weight not mandatory
 ///every text field above not mandatory filled, can input or nor
@@ -75,8 +76,10 @@ class _FormAboutState extends State<FormAbout> {
                 DateTime? birthday = context.read<AboutBloc>().state.aboutData.birthday;
                 String? horoscopeValue = context.read<AboutBloc>().state.aboutData.horoscope;
                 String? zodiac = context.read<AboutBloc>().state.aboutData.zodiac;
-                int? height = int.parse(_heightController.text);
-                int? weight = int.parse(_weightController.text);
+                int? height =
+                    _heightController.text.checkIsEmpty ? null : int.parse(_heightController.text);
+                int? weight =
+                    _heightController.text.checkIsEmpty ? null : int.parse(_weightController.text);
                 String? imagePath = context.read<AboutBloc>().state.aboutData.pathImage;
                 var data = AboutData(
                     displayName: displayName,
