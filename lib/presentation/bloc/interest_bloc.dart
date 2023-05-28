@@ -41,12 +41,18 @@ class InterestBloc extends Bloc<InterestEvent, InterestState> {
       // handle incoming `InterestRemoved` event
       // state.removeWhere((element) => element == event.interest);
       var newList = <String>[];
-      for (var data in state.interestsTemp) {
-        newList.add(data);
-      }
+      // for (var data in state.interestsTemp) {
+      //   newList.add(data);
+      // }
+      newList.addAll([...state.interests, ...state.interestsTemp]);
       //clear value on variable  interestTemporary after data move to variable interest
       state.interestsTemp.clear();
-      emit(state.copyWith(interests: newList, status: InterestStatus.initial));
+
+      //delete-duplicates-in-a-dart-list
+      var distinctIds = [
+        ...{...newList}
+      ];
+      emit(state.copyWith(interests: distinctIds, status: InterestStatus.initial));
     });
 
     on<InterestRemovedAllTemp>((event, emit) async {
