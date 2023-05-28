@@ -41,7 +41,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   }
 
   Future<void> _logInWithEmailAndPassword(LoginPressed event, emit) async {
-    if (!state.isValid) return;
+    // if (!state.isValid) return;
     emit(state.copyWith(status: FormzSubmissionStatus.inProgress));
 
     final result = await login.execute(event.loginEntity);
