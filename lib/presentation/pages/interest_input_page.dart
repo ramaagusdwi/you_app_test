@@ -131,10 +131,7 @@ class _InterestInputPageState extends State<InterestInputPage> {
 
   Widget save(BuildContext context, TextEditingController controller) {
     return InkWell(
-      onTap: () {
-        // context.read<InterestBloc>().add(InterestFetched());
-        // String value = controller.text.trim();
-        // context.read<InterestBloc>().add(InterestTextFieldSubmited(value));
+      onTap: () {   
         context.read<InterestBloc>().add(InterestSaved());
         Navigator.pop(context);
       },
