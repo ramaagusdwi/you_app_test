@@ -36,27 +36,17 @@ class _InterestState extends State<Interest> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Text(
-                          'Interest',
-                          style: whiteTextStyle.copyWith(
-                            fontSize: 14,
-                            fontWeight: bold,
-                          ),
+                      Text(
+                        'Interest',
+                        style: whiteTextStyle.copyWith(
+                          fontSize: 14,
+                          fontWeight: bold,
                         ),
                       ),
                       EditWidget(
                         onTap: () => Navigator.pushNamed(context, Routes.interest),
                       ),
-                      // InkWell(
-                      //   onTap: () => Navigator.pushNamed(context, Routes.interest),
-                      //   child: Container(
-                      //     height: 17,
-                      //     width: 17,
-                      //     child: Image.asset('assets/edit.png'),
-                      //   ),
-                      // ),
+                      
                     ],
                   ),
                   // const Spacer(),

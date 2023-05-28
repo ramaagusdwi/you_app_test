@@ -56,13 +56,12 @@ class _ProfilePageState extends State<ProfilePage> {
                 children: [
                   const SizedBox(height: 40),
                   _Header(username: widget.username),
-                  const SizedBox(height: 28),
-                  //cover photo profile user
+                  const SizedBox(height: 28),             
                   Flexible(child: CoverProfile(username: widget.username)),
                   const SizedBox(height: 24),
                   const About(),
                   const SizedBox(height: 24),
-                  const Flexible(child: Interest()),               
+                  const Interest(),               
                   const SizedBox(height: 40),
                 ],
               ),
