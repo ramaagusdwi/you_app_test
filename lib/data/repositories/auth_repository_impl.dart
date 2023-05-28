@@ -59,7 +59,7 @@ class AuthRepositoryImpl implements AuthRepository {
     } on RegisterError catch (e, stackTrace) {
       return Left(e);
     } on Exception catch (e, trace) {
-      String message = errorHandler.handle(e, trace, message: 'Login gagal');
+      String message = errorHandler.handle(e, trace, message: 'Register gagal');
       return Left(RegisterError(message: message));
     }
   }

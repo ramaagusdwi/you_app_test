@@ -178,7 +178,7 @@ class _UsernameInput extends StatelessWidget {
             hintStyle: whiteOpacity40TextStyle,
             onChanged: (value) => context.read<RegisterBloc>().add(RegisterUsernameChanged(value!)),
             errorText:
-                state.username.displayError != null ? 'Invalid Username minimal 3 character' : null,
+                state.username.displayError != null ? 'Invalid Username, min 3 character' : null,
             errorStyle: whiteOpacity40TextStyle,
             textInputType: TextInputType.name,
             validator: (value) {
@@ -318,7 +318,7 @@ class _ConfirmPasswordInputState extends State<_ConfirmPasswordInput> {
     log('displayErrorPasswdConf: ${state.confirmationPassword.displayError}');
     if (state.confirmationPassword.displayError != null) {
       if (state.confirmationPassword.displayError == ConfirmationPasswordValidationError.notMatch) {
-        return 'Confirmation Password not match with current passwor';
+        return 'Password not match';
       } else if (state.confirmationPassword.displayError ==
           ConfirmationPasswordValidationError.invalid) {
         return 'Minimum 8 character, \nThe password consist of letter and number';

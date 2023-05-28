@@ -25,7 +25,12 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   Future<bool> register(Map<String, dynamic> body) async {
     try {
       final response = await _dio.post(ApiPathConstants.register, data: body);
-      return response.statusCode == 201;
+      Map data = response.data;
+      String message = data['message'];
+      if (message.contains('User already exist')) {
+        throw const RegisterError(message: 'User already exist');
+      }
+      return data['message'];
     } on DioError catch (e) {
       final data = e.response?.data;
 

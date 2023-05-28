@@ -71,7 +71,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
   }
 
   Future<void> _register(RegisterPressed event, emit) async {
-    if (!state.isValid) return;
+    // if (!state.isValid) return;
     emit(state.copyWith(status: FormzSubmissionStatus.inProgress));
     var entity = RegisterParams(
       email: state.email.value,
