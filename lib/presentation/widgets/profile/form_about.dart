@@ -71,7 +71,8 @@ class _FormAboutState extends State<FormAbout> {
             ),
             InkWell(
               onTap: () {
-                String? displayName = _displayNameController.text;
+                String? name = context.read<AboutBloc>().state.aboutData.displayName;
+                String? displayName = _displayNameController.text.isEmpty ? name : null;
                 String? gender = _genderController.dropDownValue?.name ?? '';
                 DateTime? birthday = context.read<AboutBloc>().state.aboutData.birthday;
                 String? horoscopeValue = context.read<AboutBloc>().state.aboutData.horoscope;
