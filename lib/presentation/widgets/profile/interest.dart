@@ -16,7 +16,7 @@ class Interest extends StatefulWidget {
 class _InterestState extends State<Interest> {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<InterestBloc, List<String>>(
+    return BlocBuilder<InterestBloc, InterestState>(
       builder: (context, state) {
         return IntrinsicHeight(
           child: Container(
@@ -61,7 +61,7 @@ class _InterestState extends State<Interest> {
                   ),
                   // const Spacer(),
                   SizedBox(height: 24.w),
-                  if (state.isEmpty) ...[
+                  if (state.interests.isEmpty) ...[
                     Align(
                       alignment: Alignment.bottomLeft,
                       child: Text(
@@ -73,7 +73,7 @@ class _InterestState extends State<Interest> {
                       ),
                     )
                   ] else ...[
-                    _interestChipList(state),
+                    _interestChipList(state.interests),
                   ]
                 ]),
           ),

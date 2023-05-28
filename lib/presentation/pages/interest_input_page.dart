@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_you_app/presentation/bloc/interest_bloc.dart';
-import 'package:flutter_you_app/presentation/pages/interest_list.dart';
+import 'package:flutter_you_app/presentation/pages/interest_list_input.dart';
 import 'package:flutter_you_app/shared_view/back_button_chevron.dart';
 import 'package:flutter_you_app/resource/theme.dart';
 import 'package:flutter_you_app/shared_view/custom_text_field.dart';
@@ -88,7 +88,7 @@ class _InterestInputPageState extends State<InterestInputPage> {
                 ),
                 SizedBox(height: 20.w),
 
-                const InterestList(),
+                const InterestListInput(),
               
               ],
             ),

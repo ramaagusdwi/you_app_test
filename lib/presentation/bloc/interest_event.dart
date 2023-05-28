@@ -8,6 +8,10 @@ class InterestTextFieldSubmited extends InterestEvent {
 }
 
 
+class InterestSaved extends InterestEvent {
+  InterestSaved();
+}
+
 class InterestRemoved extends InterestEvent {
   String interest;
   InterestRemoved(this.interest);
@@ -19,4 +23,7 @@ class InterestInputed extends InterestEvent {
   InterestInputed(this.interest);
 }
 
-class InterestFetched extends InterestEvent {}
+
+class InterestRemovedAllTemp extends InterestEvent {
+  InterestRemovedAllTemp();
+}
