@@ -97,11 +97,14 @@ class ContentAbout extends StatelessWidget {
               );
             }
 
-            return Text(
-              'Add in your your to help others know you better',
-              style: whiteOpacity52TextStyle.copyWith(
-                fontSize: 14,
-                fontWeight: bold,
+            return Padding(
+              padding: const EdgeInsets.only(top: 33.0),
+              child: Text(
+                'Add in your your to help others know you better',
+                style: whiteOpacity52TextStyle.copyWith(
+                  fontSize: 14,
+                  fontWeight: bold,
+                ),
               ),
             );
           },
