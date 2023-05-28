@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_you_app/core/route/routes.dart';
+import 'package:flutter_you_app/domain/entities/about_data.dart';
+import 'package:flutter_you_app/presentation/bloc/about_bloc.dart';
 import 'package:flutter_you_app/presentation/bloc/login_bloc.dart';
 import 'package:flutter_you_app/presentation/pages/profile_page.dart';
 import 'package:flutter_you_app/resource/theme.dart';
@@ -10,7 +12,6 @@ import 'package:flutter_you_app/shared_view/primary_button.dart';
 import 'package:formz/formz.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 import 'package:flutter_you_app/extension/snackbar_ext.dart';
-
 
 class LoginForm extends StatelessWidget {
   const LoginForm({super.key});
@@ -23,9 +24,12 @@ class LoginForm extends StatelessWidget {
       listener: (context, state) {
         if (state.status.isFailure) {
           debugPrint('loginFailure');
-          context.buildErrorSnackBar(state.errorMessage ?? 'Failed Login!!!!');       
+          context.buildErrorSnackBar(state.errorMessage ?? 'Failed Login!!!!');
         }
         if (state.status.isSuccess) {
+          context
+              .read<AboutBloc>()
+              .add(AboutAddData(aboutData: AboutData(displayName: state.email.value)));
           Navigator.pushReplacementNamed(
             context,
             Routes.profile,

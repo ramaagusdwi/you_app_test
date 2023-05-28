@@ -43,16 +43,15 @@ class CoverProfile extends StatelessWidget {
                 const Spacer(),
                 //displayName or username , age
                 //to do, show age obtain from input text field birthday
-                if (state.status == AboutStatus.initial ||
-                    state.status == AboutStatus.isEditing) ...[
-                  Text(
-                    '@$username',
+             
+                Text(
+                  state.aboutData.displayName!,
                     style: whiteTextStyle.copyWith(
                       fontSize: 16,
                       fontWeight: bold,
                     ),
                   ),
-                ],
+                const SizedBox(height: 6),
 
                 if (state.status == AboutStatus.doneEdit) ...[
                   Text(
