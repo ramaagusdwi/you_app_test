@@ -71,27 +71,29 @@ class ContentAbout extends StatelessWidget {
               }
 
               //still use dummy data
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  const SizedBox(height: 33),
-                  if (dateDisplay != null || duration != null) ...[
-                    ItemLabelAbout(
-                        labelLeftText: 'Birthday:',
-                        labelRightText: '$dateDisplay (Age ${duration!.years})'),
-                  ] else ...[
-                    const ItemLabelAbout(labelLeftText: 'Birthday:', labelRightText: ''),
+              return SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    const SizedBox(height: 33),
+                    if (dateDisplay != null || duration != null) ...[
+                      ItemLabelAbout(
+                          labelLeftText: 'Birthday:',
+                          labelRightText: '$dateDisplay (Age ${duration!.years})'),
+                    ] else ...[
+                      const ItemLabelAbout(labelLeftText: 'Birthday:', labelRightText: ''),
+                    ],
+                    const SizedBox(height: 15),
+                    ItemLabelAbout(labelLeftText: 'Horoscope:', labelRightText: zodiac),
+                    const SizedBox(height: 15),
+                    ItemLabelAbout(labelLeftText: 'Zodiac:', labelRightText: horoscope),
+                    const SizedBox(height: 15),
+                    ItemLabelAbout(labelLeftText: 'Height:', labelRightText: '$height cm'),
+                    const SizedBox(height: 15),
+                    ItemLabelAbout(labelLeftText: 'Weight:', labelRightText: '$weight kg'),
                   ],
-                  const SizedBox(height: 15),
-                  ItemLabelAbout(labelLeftText: 'Horoscope:', labelRightText: zodiac),
-                  const SizedBox(height: 15),
-                  ItemLabelAbout(labelLeftText: 'Zodiac:', labelRightText: horoscope),
-                  const SizedBox(height: 15),
-                  ItemLabelAbout(labelLeftText: 'Height:', labelRightText: '$height cm'),
-                  const SizedBox(height: 15),
-                  ItemLabelAbout(labelLeftText: 'Weight:', labelRightText: '$weight kg'),
-                ],
+                ),
               );
             }
 

@@ -42,7 +42,7 @@ class _ProfilePageState extends State<ProfilePage> {
             systemOverlayStyle: SystemUiOverlayStyle.dark,
             backgroundColor: backgroundColor3,
           )),
-      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: true,
       body: WillPopScope(
         onWillPop: () async => false,
         child: SafeArea(
