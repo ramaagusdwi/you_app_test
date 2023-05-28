@@ -20,7 +20,7 @@ class _InterestState extends State<Interest> {
       builder: (context, state) {
         return IntrinsicHeight(
           child: Container(
-            padding: const EdgeInsets.fromLTRB(27, 17, 14, 23),
+            padding: const EdgeInsets.fromLTRB(27, 18, 14, 23),
             decoration: const BoxDecoration(
               borderRadius: BorderRadius.all(
                 Radius.circular(20),
@@ -36,11 +36,14 @@ class _InterestState extends State<Interest> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        'Interest',
-                        style: whiteTextStyle.copyWith(
-                          fontSize: 14,
-                          fontWeight: bold,
+                      Padding(
+                        padding: const EdgeInsets.only(top: 10.0),
+                        child: Text(
+                          'Interest',
+                          style: whiteTextStyle.copyWith(
+                            fontSize: 14,
+                            fontWeight: bold,
+                          ),
                         ),
                       ),
                       EditWidget(
