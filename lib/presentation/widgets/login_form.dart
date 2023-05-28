@@ -9,6 +9,8 @@ import 'package:flutter_you_app/shared_view/custom_text_field.dart';
 import 'package:flutter_you_app/shared_view/primary_button.dart';
 import 'package:formz/formz.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
+import 'package:flutter_you_app/extension/snackbar_ext.dart';
+
 
 class LoginForm extends StatelessWidget {
   const LoginForm({super.key});
@@ -21,17 +23,9 @@ class LoginForm extends StatelessWidget {
       listener: (context, state) {
         if (state.status.isFailure) {
           debugPrint('loginFailure');
-          ScaffoldMessenger.of(context)
-            ..hideCurrentSnackBar()
-            ..showSnackBar(
-              SnackBar(
-                content: Text(state.errorMessage ?? 'Authentication Failure'),
-              ),
-            );
+          context.buildErrorSnackBar(state.errorMessage ?? 'Failed Login!!!!');       
         }
         if (state.status.isSuccess) {
-            
-         
           Navigator.pushReplacementNamed(
             context,
             Routes.profile,
@@ -133,7 +127,6 @@ class _EmailInput extends StatelessWidget {
     return BlocBuilder<LoginBloc, LoginState>(
       buildWhen: (previous, current) => previous.email != current.email,
       builder: (context, state) {
-        
         return Container(
           margin: const EdgeInsets.only(bottom: largeMargin),
           child: CustomTextField(

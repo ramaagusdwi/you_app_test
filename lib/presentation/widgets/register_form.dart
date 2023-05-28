@@ -12,6 +12,7 @@ import 'package:flutter_you_app/shared_view/primary_button.dart';
 import 'package:flutter_you_app/shared_view/custom_text_field.dart';
 import 'package:formz/formz.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
+import 'package:flutter_you_app/extension/snackbar_ext.dart';
 
 class RegisterForm extends StatelessWidget {
   const RegisterForm({super.key});
@@ -24,17 +25,10 @@ class RegisterForm extends StatelessWidget {
       listener: (context, state) {
         if (state.status.isFailure) {
           debugPrint('RegisterFailure');
-          ScaffoldMessenger.of(context)
-            ..hideCurrentSnackBar()
-            ..showSnackBar(
-              SnackBar(
-                content: Text(state.errorMessage ?? 'Authentication Failure'),
-              ),
-            );
+          context.buildErrorSnackBar(state.errorMessage ?? 'Register Failed!!!');
         }
         if (state.status.isSuccess) {
-          debugPrint('RegisterSuccess');
-          // Navigator.of(context).pushReplacementNamed(Routes.profile);
+          debugPrint('RegisterSuccess');          
           Navigator.pushReplacementNamed(
             context,
             Routes.profile,
