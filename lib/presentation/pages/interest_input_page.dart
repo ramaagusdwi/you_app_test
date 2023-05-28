@@ -119,6 +119,7 @@ class _InterestInputPageState extends State<InterestInputPage> {
         onSubmitted: (value) {
           log('submitted');
           context.read<InterestBloc>().add(InterestTextFieldSubmited(value!));
+          controller.clear();
         },
       ),
     );
@@ -131,7 +132,7 @@ class _InterestInputPageState extends State<InterestInputPage> {
 
   Widget save(BuildContext context, TextEditingController controller) {
     return InkWell(
-      onTap: () {   
+      onTap: () {
         context.read<InterestBloc>().add(InterestSaved());
         Navigator.pop(context);
       },
